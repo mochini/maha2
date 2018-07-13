@@ -24,25 +24,13 @@ var _process$env$DATABASE = process.env.DATABASE_URL.match(/(.*)\:\/\/\/?(.*)/),
 
 var getClient = function getClient(protocol) {
 
-  switch (protocol) {
+  if (protocol === 'postgres') return 'postgresql';
 
-    case 'postgres':
-      return 'postgresql';
-
-    default:
-      return protocol;
-
-  }
+  return protocol;
 };
 
 var getConnection = function getConnection(protocol, url) {
-
-  switch (protocol) {
-
-    default:
-      return url;
-
-  }
+  return url;
 };
 
 var getPool = function getPool(env) {

@@ -13,11 +13,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Component = (0, _generator2.default)({
   files: [{
     action: 'create',
-    filepath: 'admin/components/<%= path %>.js',
+    filepath: 'admin/ui/components/<%= _.snakeCase(path) %>.js',
     template: 'component.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/admin_components/<%= _.snakeCase(path) %>.js',
+    filepath: 'tests/admin/ui/components/<%= _.snakeCase(path) %>_test.js',
     template: 'test.ejs'
   }]
 });

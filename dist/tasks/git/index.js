@@ -14,11 +14,11 @@ var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var setup = (0, _task2.default)({
-  command: 'setup',
-  description: 'setup platform',
-  file: _path2.default.join(__dirname, 'setup.js'),
-  function: 'setup'
+var git = (0, _task2.default)({
+  command: 'git',
+  description: 'manage apps via git',
+  file: _path2.default.join(__dirname, 'git.js'),
+  function: 'git'
 });
 
-exports.default = setup;
+exports.default = git;

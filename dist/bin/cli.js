@@ -1,6 +1,14 @@
 #!/usr/bin/env babel-node
 'use strict';
 
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
 var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
@@ -61,10 +69,38 @@ var getTask = function getTask(command) {
   return null;
 };
 
-var argv = (0, _minimist2.default)(process.argv.slice(2));
+var run = function () {
+  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(args) {
+    var argv, task;
+    return _regenerator2.default.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            argv = (0, _minimist2.default)(args);
+            task = getTask(argv._[0]);
 
-var task = getTask(argv._[0]);
+            if (task) {
+              _context.next = 4;
+              break;
+            }
 
-if (!task) throw new Error('invalid script');
+            throw new Error('invalid script');
 
-task.action.apply(task, (0, _toConsumableArray3.default)(argv._.slice(1)));
+          case 4:
+            _context.next = 6;
+            return task.action.apply(task, (0, _toConsumableArray3.default)(argv._.slice(1)));
+
+          case 6:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, undefined);
+  }));
+
+  return function run(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+run(process.argv.slice(2));

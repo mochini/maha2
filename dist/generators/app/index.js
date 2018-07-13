@@ -105,10 +105,6 @@ var App = (0, _generator2.default)({
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/base/tests.js',
-    template: 'tests.ejs'
-  }, {
-    action: 'create',
     filepath: 'tests/cron/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
@@ -125,15 +121,15 @@ var App = (0, _generator2.default)({
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/public_api/.gitkeep',
+    filepath: 'tests/public/api/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/public_components/.gitkeep',
+    filepath: 'tests/public/ui/components/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/public_views/.gitkeep',
+    filepath: 'tests/public/ui/views/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',

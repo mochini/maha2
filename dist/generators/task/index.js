@@ -13,7 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Task = (0, _generator2.default)({
   files: [{
     action: 'create',
-    filepath: 'tasks/<%= _.snakeCase(name) %>_task/index.js',
+    filepath: 'tasks/<%= _.snakeCase(name) %>_task.js',
     template: 'task.ejs'
   }, {
     action: 'create',
