@@ -5,28 +5,13 @@ const [url, protocol, database] = process.env.DATABASE_URL.match(/(.*)\:\/\/\/?(
 
 const getClient = (protocol) => {
 
-  switch(protocol) {
+  if(protocol === 'postgres') return 'postgresql'
 
-  case 'postgres':
-    return 'postgresql'
-
-  default:
-    return protocol
-
-  }
+  return protocol
 
 }
 
-const getConnection = (protocol, url) => {
-
-  switch(protocol) {
-
-  default:
-    return url
-
-  }
-
-}
+const getConnection = (protocol, url) => url
 
 const getPool = (env) => ({
   min: (env === 'test') ? 1 : 5,

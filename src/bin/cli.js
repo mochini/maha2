@@ -47,10 +47,16 @@ const getTask = (command) => {
 
 }
 
-const argv = minimist(process.argv.slice(2))
+const run = async (args) => {
 
-const task = getTask(argv._[0])
+  const argv = minimist(args)
 
-if(!task) throw new Error('invalid script')
+  const task = getTask(argv._[0])
 
-task.action(...argv._.slice(1))
+  if(!task) throw new Error('invalid script')
+
+  await task.action(...argv._.slice(1))
+
+}
+
+run(process.argv.slice(2))

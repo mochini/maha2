@@ -4,7 +4,7 @@ const Task = generator({
   files: [
     {
       action: 'create',
-      filepath: 'tasks/<%= _.snakeCase(name) %>_task/index.js',
+      filepath: 'tasks/<%= _.snakeCase(name) %>_task.js',
       template: 'task.ejs'
     }, {
       action: 'create',

@@ -28,7 +28,7 @@ const Component = generator({
       template: 'style.ejs'
     }, {
       action: 'create',
-      filepath: 'tests/admin_components/<%= _.snakeCase(path) %>.js',
+      filepath: 'tests/admin/ui/components/<%= _.snakeCase(path) %>_test.js',
       template: 'test.ejs'
     }
   ]

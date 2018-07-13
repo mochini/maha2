@@ -9,11 +9,11 @@ const task = (args) => {
 
   const source = require(options.file)
 
-  const action = (...args) => {
+  const action = async (...args) => {
 
-    source[options.function](...args)
+    await source[options.function](...args)
 
-    if(options.exit) process.exit()
+    if(options.exit) await process.exit()
 
   }
 

@@ -5,8 +5,7 @@ const shipit = task({
   command: 'shipit',
   description: 'ship code',
   file: path.join(__dirname, 'shipit.js'),
-  function: 'shipit',
-  exit: false
+  function: 'shipit'
 })
 
 export default shipit

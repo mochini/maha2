@@ -5,8 +5,7 @@ const setup = task({
   command: 'setup',
   description: 'setup platform',
   file: path.join(__dirname, 'setup.js'),
-  function: 'setup',
-  exit: false
+  function: 'setup'
 })
 
 export default setup
