@@ -1,3 +1,11 @@
-import test from './test'
+import task from '../../objects/task'
+import path from 'path'
 
-test(process.argv[2])
+const test = task({
+  command: 'test',
+  description: 'run tests',
+  file: path.join(__dirname, 'test.js'),
+  function: 'test'
+})
+
+export default test

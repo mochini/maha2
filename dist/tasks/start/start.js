@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.start = undefined;
 
 var _regenerator = require('babel-runtime/regenerator');
 
@@ -34,7 +35,7 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var start = function () {
+var start = exports.start = function () {
   var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
     var entities = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'all';
     return _regenerator2.default.wrap(function _callee$(_context) {
@@ -88,5 +89,3 @@ var start = function () {
     return _ref.apply(this, arguments);
   };
 }();
-
-exports.default = start;

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.dev = undefined;
 
 var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
 
@@ -104,7 +105,7 @@ var clientWatch = function clientWatch() {
   });
 };
 
-var dev = function dev() {
+var dev = exports.dev = function dev() {
 
   serverWatch('server', _path2.default.join('admin', 'api'));
 
@@ -116,5 +117,3 @@ var dev = function dev() {
 
   clientWatch();
 };
-
-exports.default = dev;

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.test = undefined;
 
 var _collect_objects = require('../../utils/collect_objects');
 
@@ -18,7 +19,7 @@ var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var test = function test() {
+var test = exports.test = function test() {
 
   var mocha = new _mocha2.default();
 
@@ -32,5 +33,3 @@ var test = function test() {
     process.exitCode = failures ? -1 : 0;
   });
 };
-
-exports.default = test;

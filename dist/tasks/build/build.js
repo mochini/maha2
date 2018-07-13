@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.build = undefined;
 
 var _bluebird = require('bluebird');
 
@@ -171,7 +172,7 @@ var buildItems = function () {
   };
 }();
 
-var build = function () {
+var build = exports.build = function () {
   var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
     return _regenerator2.default.wrap(function _callee3$(_context3) {
       while (1) {
@@ -192,5 +193,3 @@ var build = function () {
     return _ref3.apply(this, arguments);
   };
 }();
-
-exports.default = build;

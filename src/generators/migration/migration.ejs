@@ -1,0 +1,16 @@
+<% capitalized = _.upperFirst(_.camelCase(name)) -%>
+import { Migration } from 'maha'
+
+const <%= capitalized %> = new Migration({
+
+  up: async (knex) => {
+    
+  },
+
+  down: async (knex) => {
+    
+  }
+
+})
+
+export default <%= capitalized %>

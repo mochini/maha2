@@ -80,7 +80,7 @@ const clientWatch = () => {
 
 }
 
-const dev = () => {
+export const dev = () => {
 
   serverWatch('server', path.join('admin','api'))
 
@@ -93,5 +93,3 @@ const dev = () => {
   clientWatch()
 
 }
-
-export default dev

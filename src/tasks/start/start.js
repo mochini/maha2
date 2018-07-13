@@ -4,7 +4,7 @@ import worker from '../../entities/worker'
 import cron from '../../entities/cron'
 import _ from 'lodash'
 
-const start = async (entities = 'all') => {
+export const start = async (entities = 'all') => {
 
   if(_.includes(['all','server'], entities)) await server()
 
@@ -15,5 +15,3 @@ const start = async (entities = 'all') => {
   if(_.includes(['all','cron'], entities)) await cron()
 
 }
-
-export default start

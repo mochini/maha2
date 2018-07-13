@@ -1,0 +1,23 @@
+<% pluralCapitalized = _.upperFirst(_.camelCase(pluralize(name))) -%>
+<% tableName = _.snakeCase(app_name) + '_' + _.snakeCase(pluralize(name)) -%>
+import { Migration } from 'maha'
+
+const Create<%= pluralCapitalized %> = new Migration({
+
+  up: async (knex) => {
+    return await knex.schema.createTable('<%= tableName %>', (table) => {
+      table.increments('id').primary()
+      table.integer('team_id').unsigned()
+      table.foreign('team_id').references('maha_teams.id')
+
+      table.timestamps()
+    })
+  },
+
+  down: async (knex) => {
+    return await knex.schema.dropTable('<%= tableName %>')
+  }
+
+})
+
+export default Create<%= pluralCapitalized %>

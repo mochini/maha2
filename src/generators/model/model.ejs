@@ -1,0 +1,23 @@
+<% singularCapitalized = _.upperFirst(_.camelCase(pluralize.singular(name))) -%>
+<% tableName = _.snakeCase(app_name) + '_' + _.snakeCase(pluralize(name)) -%>
+import { Model } from 'maha'
+
+const <%= singularCapitalized %> = new Model({
+
+  tableName: '<%= tableName %>',
+
+  displayName: '<%= _.kebabCase(name).split('-').map(word => pluralize.singular(word)).join(' ') %>',
+
+  displayAttribute: '',
+
+  rules: {
+
+  },
+
+  virtuals: {
+
+  }
+
+})
+
+export default <%= singularCapitalized %>

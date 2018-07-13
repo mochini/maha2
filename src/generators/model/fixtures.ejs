@@ -1,0 +1,14 @@
+<% tableName = _.snakeCase(app_name) + '_' + _.snakeCase(pluralize(name)) -%>
+import { Fixtures } from 'maha'
+
+const <%= _.camelCase(name) %>Fixtures = new Fixtures({
+
+  tableName: '<%= tableName %>',
+
+  records: [
+
+  ]
+
+})
+
+export default <%= _.camelCase(name) %>Fixtures

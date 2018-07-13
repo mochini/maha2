@@ -1,8 +1,11 @@
 #!/usr/bin/env babel-node
+import collectObjects from '../utils/collect_objects'
+import { error } from '../utils/console'
+import register from 'babel-register'
 import minimist from 'minimist'
 import path from 'path'
+import _ from 'lodash'
 import fs from 'fs'
-import register from 'babel-register'
 
 register({
   presets: [
@@ -15,15 +18,39 @@ register({
     ["transform-runtime", { "polyfill": false }]
   ]
 })
+const getTask = (command) => {
+
+  const taskRoot = path.resolve(__dirname, '..', 'tasks')
+
+  const taskFiles = fs.readdirSync(taskRoot)
+
+  const tasks = taskFiles.reduce((tasks, taskFile) => {
+
+    const namespaced = require(path.join(taskRoot, taskFile)).default
+
+    return [
+      ...tasks,
+      ..._.castArray(namespaced)
+    ]
+
+  }, [])
+
+  const named = _.find(tasks, { command })
+
+  if(named) return named
+
+  const aliased = _.find(tasks, { alias: command })
+
+  if(aliased) return aliased
+
+  return null
+
+}
 
 const argv = minimist(process.argv.slice(2))
 
-const namespace = argv._[0].split(':')[0]
+const task = getTask(argv._[0])
 
-const scriptPath = path.resolve(__dirname, '..', 'tasks', namespace, `${namespace}.js`)
+if(!task) throw new Error('invalid script')
 
-if(!fs.existsSync(scriptPath)) throw new Error('invalid script')
-
-const script = require(scriptPath).default
-
-script(...argv._.slice(1))
+task.action(...argv._.slice(1))

@@ -71,6 +71,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "rimraf": "^2.6.2",
+    "shipit-cli": "^4.1.1",
+    "shipit-maha": "^1.1.2",
     "style-loader": "^0.21.0",
     "toureiro": "^0.2.13",
     "webpack": "^4.15.1",

@@ -1,0 +1,18 @@
+<% capitalized = _.upperFirst(_.camelCase(name)) -%>
+import { task } from 'maha'
+
+const <%= capitalized %>Task = task({
+
+  command: '<%= _.snakeCase(name) %>',
+
+  description: '',
+
+  processor: async () => {
+
+  },
+
+  exit: true
+
+})
+
+export default <%= capitalized %>Task

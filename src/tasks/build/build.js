@@ -82,10 +82,8 @@ const buildItems = async (srcPath, destPath) => {
 
 }
 
-const build = async () => {
+export const build = async () => {
 
   await buildItems(path.join('apps'), path.join('build','apps'))
 
 }
-
-export default build

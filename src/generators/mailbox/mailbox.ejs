@@ -1,0 +1,18 @@
+import { Mailbox } from 'maha'
+
+const <%= _.camelCase(name) %>Mailbox = Mailbox({
+
+  pattern: '',
+
+  receiver: async (to, email, trx) => {
+
+
+  },
+
+  processor: async (meta, email, trx) => {
+
+  }
+
+})
+
+export default <%= _.camelCase(name) %>Mailbox

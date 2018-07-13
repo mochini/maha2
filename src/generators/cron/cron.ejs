@@ -1,0 +1,15 @@
+import { cron } from 'maha'
+
+const <%= _.camelCase(name) %>Cron = cron({
+
+  name: '<%= _.snakeCase(name) %>',
+
+  schedule: '* * * * * *',
+
+  processor: async (trx) => {
+
+  }
+
+})
+
+export default <%= _.camelCase(name) %>Cron

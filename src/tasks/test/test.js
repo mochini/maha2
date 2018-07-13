@@ -2,7 +2,7 @@ import collectObjects from '../../utils/collect_objects'
 import Mocha from 'mocha'
 import path from 'path'
 
-const test = () => {
+export const test = () => {
 
   const mocha = new Mocha()
 
@@ -18,5 +18,3 @@ const test = () => {
 
   })
 }
-
-export default test

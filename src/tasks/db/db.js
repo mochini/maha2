@@ -1,5 +1,9 @@
 import collectObjects from '../../utils/collect_objects'
 
+export const migrateUp = async () => {}
+
+export const migrateDown = async () => {}
+
 const db = async () => {
 
   const fixtures = collectObjects('db/fixtures/*')
@@ -27,5 +31,3 @@ const db = async () => {
   console.log(seeds)
 
 }
-
-export default db

@@ -1,9 +1,24 @@
 'use strict';
 
-var _test = require('./test');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var _test2 = _interopRequireDefault(_test);
+var _task = require('../../objects/task');
+
+var _task2 = _interopRequireDefault(_task);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _test2.default)(process.argv[2]);
+var test = (0, _task2.default)({
+  command: 'test',
+  description: 'run tests',
+  file: _path2.default.join(__dirname, 'test.js'),
+  function: 'test'
+});
+
+exports.default = test;
