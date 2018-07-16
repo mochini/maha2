@@ -3,46 +3,30 @@ import collectObjects from '../../utils/collect_objects'
 import Mocha from 'mocha'
 import path from 'path'
 
-export const test = () => {
+export const test = async () => {
 
   const mocha = new Mocha()
 
   collectObjects('tests/**/*_test').map((test) => {
 
-    mocha.addFile(path.join(test))
+    mocha.addFile(test)
 
   })
 
-  mocha.before = async (done) => {
+  await new Promise((resolve, reject) => {
 
-    this.timeout(10000)
+    const runner = mocha.run((err) => {
 
-    console.log('before')
+      if(err) reject(err)
 
-    // prepareTestDb().then(() => done())
+      resolve()
 
-  }
-  // 
-  // mocha.beforeEach(async (done) => {
-  //
-  //   console.log('beforeEach')
-  //
-  //   // beginTransaction().then(() => done())
-  //
-  // })
-  //
-  // mocha.afterEach(async (done) => {
-  //
-  //   console.log('afterEach')
-  //
-  //   // rollbackTransaction().then(() => done())
-  //
-  // })
+    })
 
+    runner.on('test', () => {})
 
-  mocha.run((failures) => {
-
-    process.exitCode = failures ? -1 : 0
+    runner.on('test end', () => {})
 
   })
+
 }

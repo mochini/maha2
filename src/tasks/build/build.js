@@ -1,5 +1,6 @@
 import { action } from '../../utils/console'
 import { transform } from 'babel-core'
+import config from './webpack.config'
 import move from 'move-concurrently'
 import webpack from 'webpack'
 import rimraf from 'rimraf'
@@ -7,6 +8,8 @@ import mkdirp from 'mkdirp'
 import path from 'path'
 import ncp from 'ncp'
 import fs from 'fs'
+
+const root = path.resolve(__dirname, '..', '..', 'admin')
 
 const getItemType = (item) => item.match(/([^.]*)\.?(.*)?/)[2] || 'dir'
 
@@ -74,6 +77,10 @@ const buildItem = async (item, srcPath, destPath) => {
 
 }
 
+const removeBuild = async (dest) => rimraf.sync(dest)
+
+const copyAssets = (src, dest) => Promise.promisify(ncp)(src, dest)
+
 const buildItems = async (srcPath, destPath) => {
 
   const items = listItems(srcPath)
@@ -82,8 +89,28 @@ const buildItems = async (srcPath, destPath) => {
 
 }
 
+const compile = (config) => new Promise((resolve, reject) => {
+
+  webpack(config).run((err, stats) => {
+
+    if(err) reject(err)
+
+    resolve(stats)
+
+  })
+
+})
+
 export const build = async () => {
 
+  await removeBuild(path.join('build'))
+
+  await mkdirp.sync(path.join('build', 'public'))
+
+  await copyAssets(path.join(root, 'public'), path.join('build', 'public', 'admin'))
+
   await buildItems(path.join('apps'), path.join('build','apps'))
+
+  await compile(config)
 
 }

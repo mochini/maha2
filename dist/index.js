@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Queue = exports.task = exports.Model = exports.cron = exports.App = undefined;
+exports.Queue = exports.task = exports.serializer = exports.Model = exports.cron = exports.App = undefined;
 
 var _app = require('./objects/app');
 
@@ -16,6 +16,10 @@ var _cron3 = _interopRequireDefault(_cron2);
 var _model = require('./objects/model');
 
 var _model2 = _interopRequireDefault(_model);
+
+var _serializer2 = require('./objects/serializer');
+
+var _serializer3 = _interopRequireDefault(_serializer2);
 
 var _task2 = require('./objects/task');
 
@@ -30,5 +34,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.App = _app2.default;
 exports.cron = _cron3.default;
 exports.Model = _model2.default;
+exports.serializer = _serializer3.default;
 exports.task = _task3.default;
 exports.Queue = _queue2.default;

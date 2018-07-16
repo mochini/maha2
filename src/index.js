@@ -4,6 +4,8 @@ export cron from './objects/cron'
 
 export Model from './objects/model'
 
+export serializer from './objects/serializer'
+
 export task from './objects/task'
 
 export Queue from './objects/queue'

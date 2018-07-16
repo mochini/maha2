@@ -12,6 +12,7 @@
     "maha2": "./src/bin/cli.js"
   },
   "dependencies": {
+    "autoprefixer": "^8.6.5",
     "aws-sdk": "^2.272.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",

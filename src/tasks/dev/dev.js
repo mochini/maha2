@@ -61,7 +61,7 @@ const serverWatch = (entity, watch) => {
 const clientWatch = () => {
 
   const devserver = new devServer(Webpack(config), {
-    contentBase: path.join('public'),
+    contentBase: path.join(root, 'node_modules', 'maha','src','admin','public'),
     compress: true,
     hot: true,
     proxy: {
@@ -69,10 +69,14 @@ const clientWatch = () => {
     },
     stats: 'errors-only',
     watchContentBase: true,
-    open: true
+    open: true,
+    historyApiFallback: {
+      disableDotRule: true,
+      rewrites: [
+        { from: /.*/, to: "index.html" },
+      ]
+    }
   })
-
-  devserver.use('/admin', express.static(path.join(root, 'packages', 'maha','src','admin','public'), { redirect: false }))
 
   devserver.listen(3000, () => {
     console.info('listening on 3000')

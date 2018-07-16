@@ -1,20 +1,18 @@
 // import MahaScriptPlugin from '../../lib/webpack/maha_script_plugin'
 // import MahaStylePlugin from '../../lib/webpack/maha_style_plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
 import webpack from 'webpack'
 import path from 'path'
 
-const uiRoot = path.resolve(__dirname,'..','..','admin','ui')
+const uiRoot = path.resolve(__dirname, '..', '..', 'admin', 'ui')
 
 const config = {
-  devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    path.join(uiRoot,'admin.js'),
-    path.join(uiRoot,'admin.less')
+    path.join(uiRoot, 'admin.js'),
+    path.join(uiRoot, 'admin.less')
   ],
   module: {
     rules: [
@@ -22,12 +20,12 @@ const config = {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader?url=false',
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [autoprefixer, cssnano]
+              plugins: [ autoprefixer, cssnano ]
             }
           },
           'less-loader'
@@ -38,22 +36,33 @@ const config = {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          plugins: ['react-hot-loader/babel'],
+          presets: [
+            'es2015',
+            'react',
+            'stage-0'
+          ]
         }
       }
     ]
   },
-  mode: 'development',
+  mode: 'production',
   output: {
-    filename: 'application.js'
+    path: path.resolve('build', 'public', 'admin'),
+    filename: path.join('js', 'bundle-[hash].min.js'),
+    publicPath: ''
   },
   plugins: [
     // new MahaScriptPlugin(),
     // new MahaStylePlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      path: path.resolve('build', 'public', 'admin'),
+      filename: path.join('css', 'bundle-[hash].min.css'),
+      publicPath: ''
+    }),
     new HtmlWebpackPlugin({
-      title: 'MAHA Platform',
-      template: path.join(uiRoot,'index.html'),
+      path: path.resolve('build', 'public', 'admin'),
+      template: path.join(uiRoot, 'index.html'),
+      publicPath: ''
     }),
     new webpack.DefinePlugin({
       'process.env': {

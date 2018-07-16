@@ -8,6 +8,7 @@ const Migration = generator({
       template: 'migration.ejs'
     }
   ]
+
 })
 
 export default Migration

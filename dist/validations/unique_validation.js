@@ -1,6 +1,6 @@
 'use strict';
 
-var _knex = require('../services/knex');
+var _knex = require('../lib/knex');
 
 var _knex2 = _interopRequireDefault(_knex);
 

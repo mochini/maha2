@@ -1,6 +1,6 @@
 <% capitalized = _.upperFirst(_.camelCase(name)) -%>
 import { expect } from 'chai'
-import <%= capitalized %>Queue from '../../queues/<%= _.snakeCase(name) %>'
+import <%= capitalized %>Queue from '../../queues/<%= _.snakeCase(name) %>_queue'
 
 describe('<%= _.snakeCase(name) %> queue', () => {
 

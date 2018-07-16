@@ -33,7 +33,7 @@ var test = exports.test = function test() {
 
   (0, _collect_objects2.default)('tests/**/*_test').map(function (test) {
 
-    mocha.addFile(_path2.default.join(test));
+    mocha.addFile(test);
   });
 
   mocha.before = function () {
@@ -61,7 +61,7 @@ var test = exports.test = function test() {
       return _ref.apply(this, arguments);
     };
   }();
-  // 
+  //
   // mocha.beforeEach(async (done) => {
   //
   //   console.log('beforeEach')
