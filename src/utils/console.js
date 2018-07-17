@@ -19,6 +19,6 @@ export const success = (entity, message) => log('s', green, entity, message)
 
 export const log = (prefix, color, entity, message) => write(color(_.padEnd(prefix, 2)) + grey(`[${entity}]`) + white(`: ${message}`) + '\n')
 
-export const action = (action, target) => write(green(_.padEnd(action, 10)) + ' ' + white(target))
+export const action = (action, target) => write(green(_.padEnd(action, 10)) + ' ' + white(target) + '\n')
 
 export const write = (string) => process.stdout.write(string)

@@ -1,0 +1,51 @@
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { createStore, applyMiddleware } from 'redux'
+import initReactFastclick from 'react-fastclick'
+import { createLogger } from 'redux-logger'
+import thunkMiddleware from 'redux-thunk'
+import { Provider } from 'react-redux'
+import { hot } from 'react-hot-loader'
+import PropTypes from 'prop-types'
+import React from 'react'
+import reducers from './reducers'
+
+import Home from './views/home'
+import NotFound from './views/not_found'
+
+initReactFastclick()
+
+class App extends React.Component {
+
+  static propTypes = {}
+
+  constructor(props) {
+    super(props)
+    this.store = this._getStore()
+  }
+
+  render() {
+    return (
+      <Provider store={ this.store }>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={ Home } />
+            <Route component={ NotFound } />
+          </Switch>
+        </Router>
+      </Provider>
+    )
+  }
+
+  _getStore() {
+    const loggerMiddleware = createLogger({ collapsed: true })
+    const middleware = [
+      thunkMiddleware,
+      ...(process.env.NODE_ENV !== 'production') ? [loggerMiddleware] : []
+    ]
+    const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore)
+    return createStoreWithMiddleware(reducers)
+  }
+
+}
+
+export default hot(module)(App)

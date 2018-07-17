@@ -6,15 +6,13 @@ import cssnano from 'cssnano'
 import webpack from 'webpack'
 import path from 'path'
 
-const uiRoot = path.resolve(__dirname,'..','..','admin','ui')
-
-const config = {
+const config = (base, port) => ({
   devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
+    `webpack-dev-server/client?http://localhost:${port}`,
     'webpack/hot/only-dev-server',
-    path.join(uiRoot,'admin.js'),
-    path.join(uiRoot,'admin.less')
+    path.join(base, 'ui', 'index.js'),
+    path.join(base, 'ui', 'index.less')
   ],
   module: {
     rules: [
@@ -39,6 +37,7 @@ const config = {
         options: {
           cacheDirectory: true,
           plugins: ['react-hot-loader/babel'],
+          presets: ['es2015', 'react', 'stage-0']
         }
       }
     ]
@@ -52,8 +51,7 @@ const config = {
     // new MahaStylePlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: 'MAHA Platform',
-      template: path.join(uiRoot,'index.html'),
+      template: path.join(base, 'ui', 'index.html'),
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -70,6 +68,6 @@ const config = {
       }
     })
   ]
-}
+})
 
 export default config

@@ -37,7 +37,7 @@ const transpile = (src, dest) => {
   const transpiled = transform(contents, {
     presets: [
       'babel-preset-es2015',
-      'babel-preset-stage-0',
+      'babel-preset-react',
       'babel-preset-stage-0'
     ],
     plugins: [
@@ -89,9 +89,9 @@ const buildItems = async (srcPath, destPath) => {
 
 }
 
-const compile = (config) => new Promise((resolve, reject) => {
+const compile = (name, base) => new Promise((resolve, reject) => {
 
-  webpack(config).run((err, stats) => {
+  webpack(config(name, base)).run((err, stats) => {
 
     if(err) reject(err)
 
@@ -101,16 +101,30 @@ const compile = (config) => new Promise((resolve, reject) => {
 
 })
 
+const buildPublic = async (name, base) => {
+
+  await mkdirp.sync(path.join('build', 'public', name))
+
+  await copyAssets(path.join(base, 'public'), path.join('build', 'public', name))
+
+  await compile(name, base)
+
+
+}
+
 export const build = async () => {
 
   await removeBuild(path.join('build'))
 
-  await mkdirp.sync(path.join('build', 'public'))
-
-  await copyAssets(path.join(root, 'public'), path.join('build', 'public', 'admin'))
-
   await buildItems(path.join('apps'), path.join('build','apps'))
 
-  await compile(config)
+  await buildPublic('admin', path.resolve('node_modules', 'maha', 'src', 'admin'))
+
+  await Promise.map(fs.readdirSync(path.join('apps')), async (app, index) => {
+
+    await buildPublic(app, path.resolve('apps', app, 'public'))
+
+  })
+
 
 }

@@ -7,12 +7,10 @@ import cssnano from 'cssnano'
 import webpack from 'webpack'
 import path from 'path'
 
-const uiRoot = path.resolve(__dirname, '..', '..', 'admin', 'ui')
-
-const config = {
+const config = (name, base) => ({
   entry: [
-    path.join(uiRoot, 'admin.js'),
-    path.join(uiRoot, 'admin.less')
+    path.join(base, 'ui', 'index.js'),
+    path.join(base, 'ui', 'index.less')
   ],
   module: {
     rules: [
@@ -36,18 +34,14 @@ const config = {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          presets: [
-            'es2015',
-            'react',
-            'stage-0'
-          ]
+          presets: ['es2015', 'react', 'stage-0']
         }
       }
     ]
   },
   mode: 'production',
   output: {
-    path: path.resolve('build', 'public', 'admin'),
+    path: path.resolve('build', 'public', name),
     filename: path.join('js', 'bundle-[hash].min.js'),
     publicPath: ''
   },
@@ -55,13 +49,13 @@ const config = {
     // new MahaScriptPlugin(),
     // new MahaStylePlugin(),
     new MiniCssExtractPlugin({
-      path: path.resolve('build', 'public', 'admin'),
+      path: path.resolve('build', 'public', name),
       filename: path.join('css', 'bundle-[hash].min.css'),
       publicPath: ''
     }),
     new HtmlWebpackPlugin({
-      path: path.resolve('build', 'public', 'admin'),
-      template: path.join(uiRoot, 'index.html'),
+      path: path.resolve('build', 'public', name),
+      template: path.join(base, 'ui', 'index.html'),
       publicPath: ''
     }),
     new webpack.DefinePlugin({
@@ -79,6 +73,6 @@ const config = {
       }
     })
   ]
-}
+})
 
 export default config

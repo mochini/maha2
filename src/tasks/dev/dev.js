@@ -8,14 +8,12 @@ import rimraf from 'rimraf'
 import path from 'path'
 import fs from 'fs'
 
-const root = path.resolve()
-
 const removeBuilt = () => rimraf.sync(path.join('build'))
 
-const clientWatch = () => {
+const clientWatch = (base, port) => {
 
-  const devserver = new devServer(Webpack(config), {
-    contentBase: path.join(root, 'node_modules', 'maha','src','admin','public'),
+  const devserver = new devServer(Webpack(config(base, port)), {
+    contentBase: path.join(base, 'public'),
     compress: true,
     hot: true,
     proxy: {
@@ -32,8 +30,8 @@ const clientWatch = () => {
     }
   })
 
-  devserver.listen(3000, () => {
-    console.info('listening on 3000')
+  devserver.listen(port, () => {
+    console.info(`Listening on ${port}`)
   })
 
 }
@@ -65,6 +63,12 @@ export const dev = () => {
     path.join('serializers')
   ], ['start', 'worker'])
 
-  clientWatch()
+  clientWatch(path.resolve('node_modules', 'maha', 'src', 'admin'), 3000)
+
+  fs.readdirSync(path.join('apps')).map((app, index) => {
+
+    clientWatch(path.resolve('apps', app, 'public'), 4000 + index)
+
+  })
 
 }
