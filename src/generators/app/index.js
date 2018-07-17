@@ -68,7 +68,19 @@ const App = generator({
       template: 'gitkeep.ejs'
     }, {
       action: 'create',
-      filepath: 'public/.gitkeep',
+      filepath: 'public/app/.gitkeep',
+      template: 'gitkeep.ejs'
+    }, {
+      action: 'create',
+      filepath: 'public/public/css/.gitkeep',
+      template: 'gitkeep.ejs'
+    }, {
+      action: 'create',
+      filepath: 'public/public/images/.gitkeep',
+      template: 'gitkeep.ejs'
+    }, {
+      action: 'create',
+      filepath: 'public/public/js/.gitkeep',
       template: 'gitkeep.ejs'
     }, {
       action: 'create',

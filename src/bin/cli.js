@@ -18,6 +18,7 @@ register({
     ["transform-runtime", { "polyfill": false }]
   ]
 })
+
 const getTask = (command) => {
 
   const taskRoot = path.resolve(__dirname, '..', 'tasks')
