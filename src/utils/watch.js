@@ -6,22 +6,27 @@ import fs from 'fs'
 
 const root = path.resolve()
 
-const watchPaths = ['apps']
+const sectionPaths = ['apps']
 
-const serverWatch = (entity, watch, command) => {
+const serverWatch = (entity, watchPaths, command) => {
 
   const proc = spawn('nodemon', [
     path.join(__dirname,'..','bin','cli.js'),
     ..._.castArray(command),
     '--quiet',
-    ...watchPaths.reduce((items, group) => [
+    ...sectionPaths.reduce((items, section) => [
       ...items,
-      ...fs.readdirSync(path.join(root, group)).reduce((items, item) => {
-        if(!fs.existsSync(path.join(root, group, item, watch))) return items
+      ...fs.readdirSync(path.join(root, section)).reduce((items, item) => {
         return [
           ...items,
-          '--watch',
-          path.join(root, group, item, watch),
+          _.castArray(watchPaths).reduce((items, watchPath) => {
+            if(!fs.existsSync(path.join(root, section, item, watchPath))) return items
+            return [
+              ...items,
+              '--watch',
+              path.join(root, section, item, watchPath),
+            ]
+          }, [])
         ]
       }, []),
     ], []),
@@ -34,7 +39,7 @@ const serverWatch = (entity, watch, command) => {
 
   proc.on('message', function (event) {
     if (event.type === 'start') {
-      info(entity, `Compiled successfully.`)
+      info(entity, `Compiled successfully`)
     } else if (event.type === 'restart') {
       info(entity, `Detected change in ${event.data[0].replace(`${root}/`, '')}`)
     }

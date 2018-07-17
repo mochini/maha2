@@ -6,11 +6,11 @@ import Mocha from 'mocha'
 import path from 'path'
 import fs from 'fs'
 
-export const run = () => serverWatch('test', path.join('tests'), 'test:run')
+export const run = () => serverWatch('test', '', 'test:run')
 
 export const test = async () => {
 
-  info('test', `Running tests:`)
+  info('test', `Running tests`)
 
   const mocha = new Mocha()
 
@@ -24,23 +24,14 @@ export const test = async () => {
 
   await new Promise((resolve, reject) => {
 
-    const runner = mocha.run((err) => {
-
-      if(err) reject(err)
-
-      resolve()
-
-    })
+    const runner = mocha.run(resolve)
 
     runner.on('test', () => {})
 
     runner.on('test end', () => {})
 
-    runner.on('end', () => {
+    runner.on('end', () => {})
 
-      info('test', `Tests completed.`)
-
-    })
   })
 
 }
