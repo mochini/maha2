@@ -1,4 +1,4 @@
-import { log } from '../../../utils/console'
+import { info } from '../../../utils/console'
 import glob from 'glob'
 import path from 'path'
 import ejs from 'ejs'
@@ -18,7 +18,7 @@ class MahaStylePlugin {
 
       if(file && !file.match(/^.*\.less/)) return
 
-      if(file) log('wdm', `Detected change in ${file.replace(`${rootPath}/`, '')}`)
+      if(file) info('wdm', `Detected change in ${file.replace(`${rootPath}/`, '')}`)
 
       const styles = glob.sync('apps/**/admin/ui/**/style.less').map(style => {
         return path.resolve(style)

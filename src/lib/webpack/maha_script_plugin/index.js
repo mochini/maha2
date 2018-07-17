@@ -1,4 +1,4 @@
-import { log } from '../../../utils/console'
+import { info } from '../../../utils/console'
 import glob from 'glob'
 import path from 'path'
 import ejs from 'ejs'
@@ -18,7 +18,7 @@ class MahaScriptPlugin {
 
       if(file && !file.match(/^.*\.js$/)) return
 
-      if(file) log('wdm', `Detected change in ${file.replace(`${rootPath}/`, '')}`)
+      if(file) info('wdm', `Detected change in ${file.replace(`${rootPath}/`, '')}`)
 
       const scripts = glob.sync('packages/**/src/admin/ui/**/*.js')
 
