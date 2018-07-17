@@ -6,7 +6,7 @@ import Mocha from 'mocha'
 import path from 'path'
 import fs from 'fs'
 
-export const run = () => serverWatch('test', '', 'test:run')
+export const run = () => serverWatch('test', 'test:run')
 
 export const test = async () => {
 

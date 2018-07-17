@@ -1,5 +1,5 @@
-// import MahaScriptPlugin from '../../lib/webpack/maha_script_plugin'
-// import MahaStylePlugin from '../../lib/webpack/maha_style_plugin'
+import MahaScriptPlugin from '../../lib/webpack/maha_script_plugin'
+import MahaStylePlugin from '../../lib/webpack/maha_style_plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import autoprefixer from 'autoprefixer'
@@ -46,8 +46,8 @@ const config = (name, base) => ({
     publicPath: ''
   },
   plugins: [
-    // new MahaScriptPlugin(),
-    // new MahaStylePlugin(),
+    new MahaScriptPlugin(),
+    new MahaStylePlugin(),
     new MiniCssExtractPlugin({
       path: path.resolve('build', 'public', name),
       filename: path.join('css', 'bundle-[hash].min.css'),

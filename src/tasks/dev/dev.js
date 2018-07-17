@@ -38,30 +38,7 @@ const clientWatch = (base, port) => {
 
 export const dev = () => {
 
-  serverWatch('server', [
-    path.join('admin','api'),
-    path.join('models'),
-    path.join('serializers')
-  ], ['start', 'server'])
-
-  serverWatch('socket', [
-    path.join('admin','api'),
-    path.join('models'),
-    path.join('serializers')
-  ], ['start', 'socket'])
-
-  serverWatch('cron', [
-    path.join('cron'),
-    path.join('models'),
-    path.join('serializers')
-  ], ['start', 'cron'])
-
-  serverWatch('worker', [
-    path.join('queues'),
-    path.join('mailboxes'),
-    path.join('models'),
-    path.join('serializers')
-  ], ['start', 'worker'])
+  serverWatch('maha', 'start')
 
   clientWatch(path.resolve('node_modules', 'maha', 'src', 'admin'), 3000)
 

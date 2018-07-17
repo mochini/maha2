@@ -16,6 +16,7 @@ var Migration = (0, _generator2.default)({
     filepath: 'db/migrations/<%= moment().format(\'YYYYMMDDHHmmss\') %>_<%= _.snakeCase(name) %>.js',
     template: 'migration.ejs'
   }]
+
 });
 
 exports.default = Migration;

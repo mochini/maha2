@@ -12,6 +12,10 @@ var _maha_style_plugin = require('../../lib/webpack/maha_style_plugin');
 
 var _maha_style_plugin2 = _interopRequireDefault(_maha_style_plugin);
 
+var _miniCssExtractPlugin = require('mini-css-extract-plugin');
+
+var _miniCssExtractPlugin2 = _interopRequireDefault(_miniCssExtractPlugin);
+
 var _htmlWebpackPlugin = require('html-webpack-plugin');
 
 var _htmlWebpackPlugin2 = _interopRequireDefault(_htmlWebpackPlugin);
@@ -34,15 +38,14 @@ var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var config = function config(base, port) {
+var config = function config(name, base) {
   return {
-    devtool: 'source-map',
-    entry: ['webpack-dev-server/client?http://localhost:' + port, 'webpack/hot/only-dev-server', _path2.default.join(base, 'ui', 'index.js'), _path2.default.join(base, 'ui', 'index.less')],
+    entry: [_path2.default.join(base, 'ui', 'index.js'), _path2.default.join(base, 'ui', 'index.less')],
     module: {
       rules: [{
         test: /\.less$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader?url=false', {
+        use: [_miniCssExtractPlugin2.default.loader, 'css-loader?url=false', {
           loader: 'postcss-loader',
           options: {
             plugins: [_autoprefixer2.default, _cssnano2.default]
@@ -54,17 +57,24 @@ var config = function config(base, port) {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          plugins: ['react-hot-loader/babel'],
           presets: ['es2015', 'react', 'stage-0']
         }
       }]
     },
-    mode: 'development',
+    mode: 'production',
     output: {
-      filename: 'application.js'
+      path: _path2.default.resolve('build', 'public', name),
+      filename: _path2.default.join('js', 'bundle-[hash].min.js'),
+      publicPath: ''
     },
-    plugins: [new _maha_script_plugin2.default(), new _maha_style_plugin2.default(), new _webpack2.default.HotModuleReplacementPlugin(), new _htmlWebpackPlugin2.default({
-      template: _path2.default.join(base, 'ui', 'index.html')
+    plugins: [new _maha_script_plugin2.default(), new _maha_style_plugin2.default(), new _miniCssExtractPlugin2.default({
+      path: _path2.default.resolve('build', 'public', name),
+      filename: _path2.default.join('css', 'bundle-[hash].min.css'),
+      publicPath: ''
+    }), new _htmlWebpackPlugin2.default({
+      path: _path2.default.resolve('build', 'public', name),
+      template: _path2.default.join(base, 'ui', 'index.html'),
+      publicPath: ''
     }), new _webpack2.default.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),

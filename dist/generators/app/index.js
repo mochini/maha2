@@ -77,7 +77,55 @@ var App = (0, _generator2.default)({
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'public/.gitkeep',
+    filepath: 'public/api/.gitkeep',
+    template: 'gitkeep.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/ui/index.js',
+    template: 'index.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/ui/index.html',
+    template: 'index.html.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/ui/index.less',
+    template: 'index.less.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/ui/reducers.js',
+    template: 'reducers.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/ui/app.js',
+    template: 'app.js.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/ui/components/.gitkeep',
+    template: 'gitkeep.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/ui/views/.gitkeep',
+    template: 'gitkeep.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/ui/views/home.js',
+    template: 'home.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/ui/views/not_found.js',
+    template: 'not_found.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/public/css/.gitkeep',
+    template: 'gitkeep.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/public/images/.gitkeep',
+    template: 'gitkeep.ejs'
+  }, {
+    action: 'create',
+    filepath: 'public/public/js/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',

@@ -8,7 +8,7 @@ const root = path.resolve()
 
 const sectionPaths = ['apps']
 
-const serverWatch = (entity, watchPaths, command) => {
+const serverWatch = (entity, command) => {
 
   const proc = spawn('nodemon', [
     path.join(__dirname,'..','bin','cli.js'),
@@ -17,16 +17,11 @@ const serverWatch = (entity, watchPaths, command) => {
     ...sectionPaths.reduce((items, section) => [
       ...items,
       ...fs.readdirSync(path.join(root, section)).reduce((items, item) => {
+        if(!fs.existsSync(path.join(root, section, item))) return items
         return [
           ...items,
-          _.castArray(watchPaths).reduce((items, watchPath) => {
-            if(!fs.existsSync(path.join(root, section, item, watchPath))) return items
-            return [
-              ...items,
-              '--watch',
-              path.join(root, section, item, watchPath),
-            ]
-          }, [])
+          '--watch',
+          path.join(root, section, item),
         ]
       }, []),
     ], []),

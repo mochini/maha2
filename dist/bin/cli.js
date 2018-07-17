@@ -45,6 +45,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   presets: ["es2015", "react", "stage-0"],
   plugins: ["transform-promise-to-bluebird", ["transform-runtime", { "polyfill": false }]]
 });
+
 var getTask = function getTask(command) {
 
   var taskRoot = _path2.default.resolve(__dirname, '..', 'tasks');

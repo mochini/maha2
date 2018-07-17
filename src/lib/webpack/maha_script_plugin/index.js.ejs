@@ -1,0 +1,43 @@
+import admin from './index'
+<% for(var i = 0; i < reducers.length; i++) {-%>
+import <%= reducers[i].app %><%= reducers[i].name %>Reducer from '<%= reducers[i].filepath %>'
+<% } -%>
+<% for(var i = 0; i < routes.length; i++) {-%>
+import <%= routes[i].name %>Routes from '<%= routes[i].filepath %>'
+<% } -%>
+<% for(var i = 0; i < badges.length; i++) {-%>
+import <%= badges[i].name %>Badges from '<%= badges[i].filepath %>'
+<% } -%>
+<% for(var i = 0; i < userTasks.length; i++) {-%>
+import <%= userTasks[i].name %>UserTasks from '<%= userTasks[i].filepath %>'
+<% } -%>
+<% for(var i = 0; i < userFields.length; i++) {-%>
+import <%= userFields[i].name %>UserFields from '<%= userFields[i].filepath %>'
+<% } -%>
+<% for(var i = 0; i < userValues.length; i++) {-%>
+import <%= userValues[i].name %>UserValues from '<%= userValues[i].filepath %>'
+<% } -%>
+
+admin({
+  appBadges: [<% for(var i = 0; i < badges.length; i++) { -%>
+    ...<%= badges[i].name %>Badges.map(badge => ({
+      app: '<%= badges[i].name %>',
+      ...badge
+    })),
+  <% } -%>],
+  appReducers: [<% for(var i = 0; i < reducers.length; i++) {-%>
+    <%= reducers[i].app %><%= reducers[i].name %>Reducer,
+  <% } -%>],
+  appRoutes: [<% for(var i = 0; i < routes.length; i++) {-%>
+    { path: '<%= routes[i].config.path %>', children: <%= routes[i].name %>Routes },
+  <% } -%>],
+  appUserTasks: [<% for(var i = 0; i < userTasks.length; i++) {-%>
+    <%= userTasks[i].name %>UserTasks,
+  <% } -%>],
+  appUserFields: [<% for(var i = 0; i < userFields.length; i++) {-%>
+    <%= userFields[i].name %>UserFields,
+  <% } -%>],
+  appUserValues: [<% for(var i = 0; i < userValues.length; i++) {-%>
+    <%= userValues[i].name %>UserValues,
+  <% } -%>]
+})
