@@ -1,5 +1,6 @@
-// import imagecache from '../lib/express/imagecache'
-// import toureiro from '../lib/express/toureiro'
+import { adminDomainMiddleware, publicDomainMiddleware } from '../lib/express/domain'
+import imagecache from '../lib/express/imagecache'
+import toureiro from '../lib/express/toureiro'
 import { info } from '../utils/console'
 import ping from '../lib/express/ping'
 import express from 'express'
@@ -11,10 +12,10 @@ const server = () => {
 
   server.use('/ping', ping)
 
-  // server.use('/jobs', toureiro)
-  //
-  // server.use('/imagecache', imagecache)
-  //
+  server.use('/jobs', toureiro)
+
+  server.use('/imagecache', imagecache)
+
   // server.use(emailMiddleware)
   //
   // server.use(mailboxMiddleware)
@@ -29,7 +30,7 @@ const server = () => {
 
   // server.use(/^(\/admin)?\/(css|assets|audio|imagecache|images|js)/, (req, res) => res.status(404).send('Cannot locate asset'))
 
-  server.use((req, res) => res.send('not found'))
+  server.use((req, res) => res.status(404).send('not found'))
 
   server.listen(3001, () => {
     info('server', 'Listening on 3001')
