@@ -109,7 +109,6 @@ const buildPublic = async (name, base) => {
 
   await compile(name, base)
 
-
 }
 
 export const build = async () => {

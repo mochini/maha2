@@ -6,7 +6,7 @@ import cssnano from 'cssnano'
 import webpack from 'webpack'
 import path from 'path'
 
-const config = (base, port) => ({
+const config = (name, base, port) => ({
   devtool: 'source-map',
   entry: [
     `webpack-dev-server/client?http://localhost:${port}`,
@@ -51,7 +51,7 @@ const config = (base, port) => ({
     new MahaStylePlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(base, 'ui', 'index.html'),
+      template: path.join(base, 'ui', 'index.html')
     }),
     new webpack.DefinePlugin({
       'process.env': {

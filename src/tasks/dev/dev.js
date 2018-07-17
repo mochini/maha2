@@ -1,20 +1,20 @@
-import { info, error } from '../../utils/console'
+import { info } from '../../utils/console'
 import serverWatch from '../../utils/watch'
 import devServer from 'webpack-dev-server'
 import config from './webpack.config'
-import Webpack from 'webpack'
-import express from 'express'
-import rimraf from 'rimraf'
+import webpack from 'webpack'
 import path from 'path'
 import fs from 'fs'
 
-const removeBuilt = () => rimraf.sync(path.join('build'))
+const clientWatch = (name, base, port) => {
 
-const clientWatch = (base, port) => {
+  const compiler = webpack(config(name, base, port))
 
-  const devserver = new devServer(Webpack(config(base, port)), {
+  const devserver = new devServer(compiler, {
     contentBase: path.join(base, 'public'),
     compress: true,
+    disableHostCheck: true,
+    host: '0.0.0.0',
     hot: true,
     proxy: {
       '*': 'http://localhost:3001'
@@ -25,13 +25,13 @@ const clientWatch = (base, port) => {
     historyApiFallback: {
       disableDotRule: true,
       rewrites: [
-        { from: /.*/, to: "index.html" },
+        { from: /.*/, to: 'index.html' }
       ]
     }
   })
 
-  devserver.listen(port, () => {
-    console.info(`Listening on ${port}`)
+  devserver.listen(port, '0.0.0.0', () => {
+    info(name, `Listening on ${port}`)
   })
 
 }
@@ -40,11 +40,11 @@ export const dev = () => {
 
   serverWatch('maha', 'start')
 
-  clientWatch(path.resolve('node_modules', 'maha', 'src', 'admin'), 3000)
+  clientWatch('admin', path.resolve('node_modules', 'maha', 'src', 'admin'), 3000)
 
   fs.readdirSync(path.join('apps')).map((app, index) => {
 
-    clientWatch(path.resolve('apps', app, 'public'), 4000 + index)
+    clientWatch(app, path.resolve('apps', app, 'public'), 4000 + index)
 
   })
 

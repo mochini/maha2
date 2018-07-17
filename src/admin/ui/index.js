@@ -1,3 +1,3 @@
-import admin from './index'
+import admin from './admin'
 
 admin()
