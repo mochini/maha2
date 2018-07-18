@@ -1,24 +1,36 @@
 import chalk from 'chalk'
 import _ from 'lodash'
 
-const blue = chalk.hex('#0000FF')
+export const info = (entity, message) => log('i', 'blue', entity, message)
 
-const red = chalk.hex('#FF0000')
+export const error = (entity, message) => log('e', 'red', entity, message)
 
-const green = chalk.hex('#00FF00')
+export const success = (entity, message) => log('s', 'green', entity, message)
 
-const grey = chalk.hex('#888888')
+export const log = (prefix, color, entity, message) => write([
+  { color, length: 2, content: prefix },
+  { color: 'grey', content: `[${entity}]` },
+  { color: 'white', content: `: ${message}` }
+])
 
-const white = chalk.hex('#FFFFFF')
+export const action = (action, target) => write([
+  { color: 'green', length: 10, content: action },
+  { color: 'white', content: target }
+])
 
-export const info = (entity, message) => log('i', blue, entity, message)
 
-export const error = (entity, message) => log('e', red, entity, message)
+export const write = (items) => {
 
-export const success = (entity, message) => log('s', green, entity, message)
+  if(_.isString(items)) return process.stdout.write(items)
 
-export const log = (prefix, color, entity, message) => write(color(_.padEnd(prefix, 2)) + grey(`[${entity}]`) + white(`: ${message}`) + '\n')
+  _.castArray(items).map(item => {
 
-export const action = (action, target) => write(green(_.padEnd(action, 10)) + ' ' + white(target) + '\n')
+    const content = item.length ? _.padEnd(item.content, item.length) : item.content
 
-export const write = (string) => process.stdout.write(string)
+    return process.stdout.write(chalk[item.color](content))
+
+  })
+
+  process.stdout.write('\n')
+
+}

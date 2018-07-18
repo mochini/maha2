@@ -248,7 +248,7 @@ var buildPublic = function () {
 }();
 
 var build = exports.build = function () {
-  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6() {
+  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(flags, args) {
     return _regenerator2.default.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
@@ -283,7 +283,7 @@ var build = exports.build = function () {
                 }, _callee5, undefined);
               }));
 
-              return function (_x9, _x10) {
+              return function (_x11, _x12) {
                 return _ref6.apply(this, arguments);
               };
             }());
@@ -296,7 +296,7 @@ var build = exports.build = function () {
     }, _callee6, undefined);
   }));
 
-  return function build() {
+  return function build(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();

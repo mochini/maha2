@@ -16,7 +16,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var start = (0, _task2.default)({
   command: 'start',
-  description: 'start servers',
+  description: 'start entities',
+  args: [{ name: 'entity', description: 'name of entity' }],
   file: _path2.default.join(__dirname, 'start.js'),
   function: 'start',
   exit: false

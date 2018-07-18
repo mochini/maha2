@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "maha2": "./src/bin/cli.js"
+    "maha2": "./src/bin/maha.js"
   },
   "dependencies": {
     "autoprefixer": "^8.6.5",

@@ -20,7 +20,7 @@ var _collect_objects2 = _interopRequireDefault(_collect_objects);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var migrateUp = exports.migrateUp = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(flags, args) {
     return _regenerator2.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -32,13 +32,13 @@ var migrateUp = exports.migrateUp = function () {
     }, _callee, undefined);
   }));
 
-  return function migrateUp() {
+  return function migrateUp(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 
 var migrateDown = exports.migrateDown = function () {
-  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(flags, args) {
     return _regenerator2.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -50,7 +50,7 @@ var migrateDown = exports.migrateDown = function () {
     }, _callee2, undefined);
   }));
 
-  return function migrateDown() {
+  return function migrateDown(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
 }();

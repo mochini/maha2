@@ -1,9 +1,9 @@
 'use strict';
 
-var _index = require('./index');
+var _admin = require('./admin');
 
-var _index2 = _interopRequireDefault(_index);
+var _admin2 = _interopRequireDefault(_admin);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _index2.default)();
+(0, _admin2.default)();

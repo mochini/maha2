@@ -1,4 +1,4 @@
-import { info, error } from './console'
+import { info, error, write } from './console'
 import { spawn } from 'child_process'
 import path from 'path'
 import _ from 'lodash'
@@ -11,7 +11,7 @@ const sectionPaths = ['apps']
 const serverWatch = (entity, command) => {
 
   const proc = spawn('nodemon', [
-    path.join(__dirname,'..','bin','cli.js'),
+    path.join(__dirname,'..','bin','maha.js'),
     ..._.castArray(command),
     '--quiet',
     ...sectionPaths.reduce((items, section) => [
@@ -21,9 +21,9 @@ const serverWatch = (entity, command) => {
         return [
           ...items,
           '--watch',
-          path.join(root, section, item),
+          path.join(root, section, item)
         ]
-      }, []),
+      }, [])
     ], []),
     '--exec',
     'babel-node',
@@ -33,19 +33,29 @@ const serverWatch = (entity, command) => {
   })
 
   proc.on('message', function (event) {
+
     if (event.type === 'start') {
-      info(entity, `Compiled successfully`)
+
+      info(entity, 'Compiled successfully')
+
     } else if (event.type === 'restart') {
+
       info(entity, `Detected change in ${event.data[0].replace(`${root}/`, '')}`)
+
     }
+
   })
 
   proc.stdout.on('data', function (data) {
-    process.stdout.write(data.toString())
+
+    write(data.toString())
+
   })
 
   proc.stderr.on('data', function (err) {
+
     error(entity, `${err}`)
+
   })
 
 }

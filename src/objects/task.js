@@ -21,6 +21,8 @@ const task = (args) => {
     command: options.command,
     alias: options.alias,
     description: options.description,
+    flags: options.flags || [],
+    args: options.args || [],
     action
   }
 

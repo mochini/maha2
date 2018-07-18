@@ -7,7 +7,7 @@ exports.shipit = undefined;
 
 var _console = require('../../utils/console');
 
-var shipit = exports.shipit = function shipit() {
+var shipit = exports.shipit = function shipit(flags, args) {
 
   (0, _console.info)('shipit', 'shipit');
 };

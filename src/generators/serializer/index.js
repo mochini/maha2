@@ -4,11 +4,11 @@ const Serializer = generator({
   files: [
     {
       action: 'create',
-      filepath: 'serializers/<%= _.snakeCase(pluralize.singular(name)) %>_serializer.js',
+      filepath: 'apps/<%= app %>/serializers/<%= _.snakeCase(pluralize.singular(name)) %>_serializer.js',
       template: 'serializer.ejs'
     }, {
       action: 'create',
-      filepath: 'tests/serializers/<%= _.snakeCase(pluralize.singular(name)) %>_serializer_test.js',
+      filepath: 'apps/<%= app %>/tests/serializers/<%= _.snakeCase(pluralize.singular(name)) %>_serializer_test.js',
       template: 'test.ejs'
     }
   ]

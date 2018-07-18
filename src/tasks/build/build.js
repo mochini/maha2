@@ -111,7 +111,7 @@ const buildPublic = async (name, base) => {
 
 }
 
-export const build = async () => {
+export const build = async (flags, args) => {
 
   await removeBuild(path.join('build'))
 

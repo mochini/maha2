@@ -1,8 +1,8 @@
 import collectObjects from '../../utils/collect_objects'
 
-export const migrateUp = async () => {}
+export const migrateUp = async (flags, args) => {}
 
-export const migrateDown = async () => {}
+export const migrateDown = async (flags, args) => {}
 
 const db = async () => {
 

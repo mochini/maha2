@@ -34,7 +34,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var rootPath = _path2.default.resolve();
 
-var stylePath = _path2.default.join(rootPath, 'index.less');
+var stylePath = _path2.default.join(rootPath, 'build', 'index.less');
 
 var MahaStylePlugin = function () {
   function MahaStylePlugin() {
@@ -49,7 +49,7 @@ var MahaStylePlugin = function () {
 
         if (file && !file.match(/^.*\.less/)) return;
 
-        if (file) (0, _console.log)('wdm', 'Detected change in ' + file.replace(rootPath + '/', ''));
+        if (file) (0, _console.info)('wdm', 'Detected change in ' + file.replace(rootPath + '/', ''));
 
         var styles = _glob2.default.sync('apps/**/admin/ui/**/style.less').map(function (style) {
           return _path2.default.resolve(style);

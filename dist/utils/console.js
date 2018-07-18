@@ -15,36 +15,36 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var blue = _chalk2.default.hex('#0000FF');
-
-var red = _chalk2.default.hex('#FF0000');
-
-var green = _chalk2.default.hex('#00FF00');
-
-var grey = _chalk2.default.hex('#888888');
-
-var white = _chalk2.default.hex('#FFFFFF');
-
 var info = exports.info = function info(entity, message) {
-  return log('i', blue, entity, message);
+  return log('i', 'blue', entity, message);
 };
 
 var error = exports.error = function error(entity, message) {
-  return log('e', red, entity, message);
+  return log('e', 'red', entity, message);
 };
 
 var success = exports.success = function success(entity, message) {
-  return log('s', green, entity, message);
+  return log('s', 'green', entity, message);
 };
 
 var log = exports.log = function log(prefix, color, entity, message) {
-  return write(color(_lodash2.default.padEnd(prefix, 2)) + grey('[' + entity + ']') + white(': ' + message) + '\n');
+  return write([{ color: color, length: 2, content: prefix }, { color: 'grey', content: '[' + entity + ']' }, { color: 'white', content: ': ' + message }]);
 };
 
 var action = exports.action = function action(_action, target) {
-  return write(green(_lodash2.default.padEnd(_action, 10)) + ' ' + white(target) + '\n');
+  return write([{ color: 'green', length: 10, content: _action }, { color: 'white', content: target }]);
 };
 
-var write = exports.write = function write(string) {
-  return process.stdout.write(string);
+var write = exports.write = function write(items) {
+
+  if (_lodash2.default.isString(items)) return process.stdout.write(items);
+
+  _lodash2.default.castArray(items).map(function (item) {
+
+    var content = item.length ? _lodash2.default.padEnd(item.content, item.length) : item.content;
+
+    return process.stdout.write(_chalk2.default[item.color](content));
+  });
+
+  process.stdout.write('\n');
 };

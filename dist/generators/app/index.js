@@ -116,17 +116,9 @@ var App = (0, _generator2.default)({
     filepath: 'public/ui/views/not_found.js',
     template: 'not_found.ejs'
   }, {
-    action: 'create',
-    filepath: 'public/public/css/.gitkeep',
-    template: 'gitkeep.ejs'
-  }, {
-    action: 'create',
-    filepath: 'public/public/images/.gitkeep',
-    template: 'gitkeep.ejs'
-  }, {
-    action: 'create',
-    filepath: 'public/public/js/.gitkeep',
-    template: 'gitkeep.ejs'
+    action: 'copy',
+    src: 'public',
+    dest: 'public/public'
   }, {
     action: 'create',
     filepath: 'queues/.gitkeep',

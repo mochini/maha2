@@ -14,20 +14,20 @@ const clientWatch = (name, base, port) => {
     contentBase: path.join(base, 'public'),
     compress: true,
     disableHostCheck: true,
-    host: '0.0.0.0',
-    hot: true,
-    proxy: {
-      '*': 'http://localhost:3001'
-    },
-    stats: 'errors-only',
-    watchContentBase: true,
-    open: true,
     historyApiFallback: {
       disableDotRule: true,
       rewrites: [
         { from: /.*/, to: 'index.html' }
       ]
-    }
+    },
+    host: '0.0.0.0',
+    hot: true,
+    open: true,
+    // proxy: {
+    //   '*': 'http://localhost:3001'
+    // },
+    stats: 'errors-only',
+    watchContentBase: true
   })
 
   devserver.listen(port, '0.0.0.0', () => {
@@ -36,15 +36,20 @@ const clientWatch = (name, base, port) => {
 
 }
 
-export const dev = () => {
+export const dev = (flags, args) => {
 
   serverWatch('maha', 'start')
 
-  clientWatch('admin', path.resolve('node_modules', 'maha', 'src', 'admin'), 3000)
+  clientWatch('admin', path.resolve('node_modules', 'maha', 'src', 'admin'), 4000)
 
-  fs.readdirSync(path.join('apps')).map((app, index) => {
+  fs.readdirSync(path.join('apps')).filter(app => {
 
-    clientWatch(app, path.resolve('apps', app, 'public'), 4000 + index)
+    return fs.lstatSync(path.join('apps', app)).isDirectory()
+
+  }).map((app, index) => {
+
+
+    clientWatch(app, path.resolve('apps', app, 'public'), 4001 + index)
 
   })
 

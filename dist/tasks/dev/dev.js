@@ -23,14 +23,6 @@ var _webpack3 = require('webpack');
 
 var _webpack4 = _interopRequireDefault(_webpack3);
 
-var _express = require('express');
-
-var _express2 = _interopRequireDefault(_express);
-
-var _rimraf = require('rimraf');
-
-var _rimraf2 = _interopRequireDefault(_rimraf);
-
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
@@ -41,15 +33,17 @@ var _fs2 = _interopRequireDefault(_fs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var removeBuilt = function removeBuilt() {
-  return _rimraf2.default.sync(_path2.default.join('build'));
-};
+var clientWatch = function clientWatch(name, base, port) {
 
-var clientWatch = function clientWatch(base, port) {
+  var compiler = (0, _webpack4.default)((0, _webpack2.default)(name, base, port));
 
-  var devserver = new _webpackDevServer2.default((0, _webpack4.default)((0, _webpack2.default)(base, port)), {
+  console.log(name, _path2.default.join(base, 'public'));
+
+  var devserver = new _webpackDevServer2.default(compiler, {
     contentBase: _path2.default.join(base, 'public'),
     compress: true,
+    disableHostCheck: true,
+    host: '0.0.0.0',
     hot: true,
     proxy: {
       '*': 'http://localhost:3001'
@@ -59,23 +53,23 @@ var clientWatch = function clientWatch(base, port) {
     open: true,
     historyApiFallback: {
       disableDotRule: true,
-      rewrites: [{ from: /.*/, to: "index.html" }]
+      rewrites: [{ from: /.*/, to: 'index.html' }]
     }
   });
 
-  devserver.listen(port, function () {
-    console.info('Listening on ' + port);
+  devserver.listen(port, '0.0.0.0', function () {
+    (0, _console.info)(name, 'Listening on ' + port);
   });
 };
 
-var dev = exports.dev = function dev() {
+var dev = exports.dev = function dev(flags, args) {
 
   (0, _watch2.default)('maha', 'start');
 
-  clientWatch(_path2.default.resolve('node_modules', 'maha', 'src', 'admin'), 3000);
+  clientWatch('admin', _path2.default.resolve('node_modules', 'maha', 'src', 'admin'), 3000);
 
   _fs2.default.readdirSync(_path2.default.join('apps')).map(function (app, index) {
 
-    clientWatch(_path2.default.resolve('apps', app, 'public'), 4000 + index);
+    clientWatch(app, _path2.default.resolve('apps', app, 'public'), 4000 + index);
   });
 };

@@ -11,8 +11,39 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        Hello World!
+      <div className="ui centered grid container">
+        <div className="eight wide center aligned column">
+          <img src="https://avatars2.githubusercontent.com/u/27693503?s=200&v=4" width="150" />
+          <h1>Welcome to <%= _.upperFirst(app_name) %>!</h1>
+          <p>
+            This is the home page to your app's public interface. All content
+            is dynamically recompiled. You can try it yourself by editing this
+            file, located at <strong>apps/<%= app %>/public/ui/views/home.js</strong>
+          </p>
+          <h2>Learn More About App Development</h2>
+          <table className="ui striped table">
+            <tbody>
+              <tr>
+                <td>
+                  <strong><a href="https://mahaplatform.github.io/apps/index.html">Developing Apps</a></strong><br />
+                  Guides and reference for public and admin application development for the Maha Platform
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong><a href="https://reactjs.org/">React</a></strong><br />
+                  Guides for React
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong><a href="https://reactjs.org/">Redux</a></strong><br />
+                  Guides for Redux
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }

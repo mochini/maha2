@@ -5,21 +5,22 @@ import moment from 'moment'
 import path from 'path'
 import _ from 'lodash'
 import ejs from 'ejs'
+import ncp from 'ncp'
 import fs from 'fs'
 
 const generatorsPath = path.join(__dirname, '..', '..', 'generators')
 
 const generators = fs.readdirSync(generatorsPath)
 
-export const generate = async (...args) => {
+export const generate = async (flags, args) => {
 
-  const template = args[0]
+  const template = args.template
 
-  const app = args[1]
+  const app = args.app
 
-  const name = typeof args[2] === 'string' ? args[2] : args[1]
+  const name = typeof args.name === 'string' ? args.name : args.app
 
-  if(!_.includes(generators, template)) throw new Error('invalid template')
+  if(!_.includes(generators, template)) throw new Error(`'${template}' is not a valid template`)
 
   const config = getConfig(app)
 
@@ -29,9 +30,13 @@ export const generate = async (...args) => {
 
   const generator = require(generatorPath).default
 
-  generator.files.map(file => generateFile(file, generatorPath, data))
+  await Promise.mapSeries(generator.files, async (file) => {
 
-  // if(generator.afters) await runHooks(generator.after, data)
+    await generateFile(file, generatorPath, data)
+
+  })
+
+  if(generator.after) await runHooks(generator.after, data)
 
 }
 
@@ -48,15 +53,11 @@ export const destroy = async (...args) => {
 
 }
 
-const generateFile = (file, templatesPath, data) => {
+const generateFile = async (file, templatesPath, data) => {
 
-  const renderedPath = ejs.render(file.filepath, data)
+  if(file.action === 'copy') return await copyItem(file, templatesPath, data)
 
-  const filepath = path.join(data.root, renderedPath)
-
-  makeDirectory(filepath, data)
-
-  if(file.action === 'create') createFile(file, filepath, templatesPath, data)
+  if(file.action === 'create') return await createFile(file, templatesPath, data)
 
 }
 
@@ -78,7 +79,27 @@ const makeDirectory = (filepath, data) => {
 
 }
 
-const createFile = (file, filepath, templatesPath, data) => {
+const copyItem = async (file, templatesPath, data) => {
+
+  const srcPath = ejs.render(path.join(templatesPath, file.src), data)
+
+  const destPath = ejs.render(path.join(file.dest), data)
+
+  console.log(srcPath, destPath)
+
+  action('copy', destPath)
+
+  await Promise.promisify(ncp)(path.resolve(srcPath), path.resolve(destPath))
+
+}
+
+const createFile = (file, templatesPath, data) => {
+
+  const renderedPath = ejs.render(file.filepath, data)
+
+  const filepath = path.join(data.root, renderedPath)
+
+  makeDirectory(filepath, data)
 
   if(fs.existsSync(filepath)) return action('identical', filepath)
 
@@ -113,7 +134,7 @@ const getData = (template, app, config, initname) => {
     app,
     name,
     app_name,
-    root: path.join('apps', app),
+    root: '',
     path: parts.join('/')
   }
 
@@ -144,7 +165,7 @@ const runHooks = async (hooks, data) => {
 
     action('exec', hook.description)
 
-    await exec(hook.command, `${data.root}/${data.path}`)
+    await exec(hook.command, data.path)
 
   })
 

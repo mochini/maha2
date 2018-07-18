@@ -42,7 +42,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var rootPath = _path2.default.resolve();
 
-var scriptPath = _path2.default.join(rootPath, 'index.js');
+var scriptPath = _path2.default.join(rootPath, 'build', 'index.js');
 
 var MahaScriptPlugin = function () {
   function MahaScriptPlugin() {
@@ -71,7 +71,7 @@ var MahaScriptPlugin = function () {
 
                 case 2:
 
-                  if (file) (0, _console.log)('wdm', 'Detected change in ' + file.replace(rootPath + '/', ''));
+                  if (file) (0, _console.info)('wdm', 'Detected change in ' + file.replace(rootPath + '/', ''));
 
                   scripts = _glob2.default.sync('packages/**/src/admin/ui/**/*.js');
                   reducers = [];

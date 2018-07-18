@@ -27,28 +27,18 @@ var _watch = require('../../utils/watch');
 
 var _watch2 = _interopRequireDefault(_watch);
 
-var _child_process = require('child_process');
-
 var _mocha = require('mocha');
 
 var _mocha2 = _interopRequireDefault(_mocha);
 
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
-var _fs = require('fs');
-
-var _fs2 = _interopRequireDefault(_fs);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var run = exports.run = function run() {
+var run = exports.run = function run(flags, args) {
   return (0, _watch2.default)('test', 'test:run');
 };
 
 var test = exports.test = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(flags, args) {
     var mocha;
     return _regenerator2.default.wrap(function _callee$(_context) {
       while (1) {
@@ -87,7 +77,7 @@ var test = exports.test = function () {
     }, _callee, undefined);
   }));
 
-  return function test() {
+  return function test(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();

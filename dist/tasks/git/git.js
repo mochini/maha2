@@ -7,7 +7,7 @@ exports.git = undefined;
 
 var _console = require('../../utils/console');
 
-var git = exports.git = function git() {
+var git = exports.git = function git(flags, args) {
 
   (0, _console.info)('git', 'git');
 };

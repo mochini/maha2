@@ -4,14 +4,20 @@ import worker from '../../entities/worker'
 import cron from '../../entities/cron'
 import _ from 'lodash'
 
-export const start = async (entities = 'all') => {
+const entities = ['all','server','socket','worker','cron']
 
-  if(_.includes(['all','server'], entities)) await server()
+export const start = async (flags, args) => {
 
-  if(_.includes(['all','socket'], entities)) await socket()
+  const entity = args.entity || 'all'
 
-  if(_.includes(['all','worker'], entities)) await worker()
+  if(!_.includes(entities, entity)) throw new Error(`'${entity}' is not a valid entity`)
 
-  if(_.includes(['all','cron'], entities)) await cron()
+  if(_.includes(['all','server'], entity)) await server()
+
+  if(_.includes(['all','socket'], entity)) await socket()
+
+  if(_.includes(['all','worker'], entity)) await worker()
+
+  if(_.includes(['all','cron'], entity)) await cron()
 
 }

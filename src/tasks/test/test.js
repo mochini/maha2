@@ -1,16 +1,13 @@
 import collectObjects from '../../utils/collect_objects'
-import { info, error } from '../../utils/console'
+import { info } from '../../utils/console'
 import serverWatch from '../../utils/watch'
-import { spawn } from 'child_process'
 import Mocha from 'mocha'
-import path from 'path'
-import fs from 'fs'
 
-export const run = () => serverWatch('test', 'test:run')
+export const run = (flags, args) => serverWatch('test', 'test:run')
 
-export const test = async () => {
+export const test = async (flags, args) => {
 
-  info('test', `Running tests`)
+  info('test', 'Running tests')
 
   const mocha = new Mocha()
 

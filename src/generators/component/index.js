@@ -4,11 +4,11 @@ const Component = generator({
   files: [
     {
       action: 'create',
-      filepath: 'admin/ui/components/<%= _.snakeCase(path) %>.js',
+      filepath: 'apps/<%= app %>/admin/ui/components/<%= _.snakeCase(path) %>.js',
       template: 'component.ejs'
     }, {
       action: 'create',
-      filepath: 'tests/admin/ui/components/<%= _.snakeCase(path) %>_test.js',
+      filepath: 'apps/<%= app %>/tests/admin/ui/components/<%= _.snakeCase(path) %>_test.js',
       template: 'test.ejs'
     }
   ]

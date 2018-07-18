@@ -34,7 +34,7 @@ var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var config = function config(base, port) {
+var config = function config(name, base, port) {
   return {
     devtool: 'source-map',
     entry: ['webpack-dev-server/client?http://localhost:' + port, 'webpack/hot/only-dev-server', _path2.default.join(base, 'ui', 'index.js'), _path2.default.join(base, 'ui', 'index.less')],
