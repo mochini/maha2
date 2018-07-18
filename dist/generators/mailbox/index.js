@@ -13,11 +13,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Queue = (0, _generator2.default)({
   files: [{
     action: 'create',
-    filepath: 'mailboxes/<%= _.snakeCase(name) %>_mailbox/index.js',
+    filepath: 'apps/<%= app %>/mailboxes/<%= _.snakeCase(name) %>_mailbox/index.js',
     template: 'mailbox.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/mailboxes/<%= _.snakeCase(name) %>_mailbox_test.js',
+    filepath: 'apps/<%= app %>/tests/mailboxes/<%= _.snakeCase(name) %>_mailbox_test.js',
     template: 'test.ejs'
   }]
 });

@@ -13,31 +13,31 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Component = (0, _generator2.default)({
   files: [{
     action: 'create',
-    filepath: 'admin/components/<%= path %>/actions.js',
+    filepath: 'apps/<%= app %>/admin/ui/components/<%= path %>/actions.js',
     template: 'actions.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/components/<%= path %>/index.js',
+    filepath: 'apps/<%= app %>/admin/ui/components/<%= path %>/index.js',
     template: 'index.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/components/<%= path %>/reducer.js',
+    filepath: 'apps/<%= app %>/admin/ui/components/<%= path %>/reducer.js',
     template: 'reducer.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/components/<%= path %>/<%= _.snakeCase(name) %>.js',
+    filepath: 'apps/<%= app %>/admin/ui/components/<%= path %>/<%= _.snakeCase(name) %>.js',
     template: 'component.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/components/<%= path %>/selectors.js',
+    filepath: 'apps/<%= app %>/admin/ui/components/<%= path %>/selectors.js',
     template: 'selectors.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/components/<%= path %>/style.less',
+    filepath: 'apps/<%= app %>/admin/ui/components/<%= path %>/style.less',
     template: 'style.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/admin/ui/components/<%= _.snakeCase(path) %>_test.js',
+    filepath: 'apps/<%= app %>/tests/admin/ui/components/<%= _.snakeCase(path) %>_test.js',
     template: 'test.ejs'
   }]
 });

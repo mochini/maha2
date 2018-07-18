@@ -32,7 +32,7 @@ var sectionPaths = ['apps'];
 
 var serverWatch = function serverWatch(entity, command) {
 
-  var proc = (0, _child_process.spawn)('nodemon', [_path2.default.join(__dirname, '..', 'bin', 'cli.js')].concat((0, _toConsumableArray3.default)(_lodash2.default.castArray(command)), ['--quiet'], (0, _toConsumableArray3.default)(sectionPaths.reduce(function (items, section) {
+  var proc = (0, _child_process.spawn)('nodemon', [_path2.default.join(__dirname, '..', 'bin', 'maha.js')].concat((0, _toConsumableArray3.default)(_lodash2.default.castArray(command)), ['--quiet'], (0, _toConsumableArray3.default)(sectionPaths.reduce(function (items, section) {
     return [].concat((0, _toConsumableArray3.default)(items), (0, _toConsumableArray3.default)(_fs2.default.readdirSync(_path2.default.join(root, section)).reduce(function (items, item) {
       if (!_fs2.default.existsSync(_path2.default.join(root, section, item))) return items;
       return [].concat((0, _toConsumableArray3.default)(items), ['--watch', _path2.default.join(root, section, item)]);
@@ -42,18 +42,23 @@ var serverWatch = function serverWatch(entity, command) {
   });
 
   proc.on('message', function (event) {
+
     if (event.type === 'start') {
+
       (0, _console.info)(entity, 'Compiled successfully');
     } else if (event.type === 'restart') {
+
       (0, _console.info)(entity, 'Detected change in ' + event.data[0].replace(root + '/', ''));
     }
   });
 
   proc.stdout.on('data', function (data) {
-    process.stdout.write(data.toString());
+
+    (0, _console.write)(data.toString());
   });
 
   proc.stderr.on('data', function (err) {
+
     (0, _console.error)(entity, '' + err);
   });
 };

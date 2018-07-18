@@ -1,7 +1,7 @@
 #!/usr/bin/env babel-node
-import '../lib/environment'
+// import '../lib/environment'
 import register from 'babel-register'
-import { usage, help, run } from './cli'
+import { help, run } from './cli'
 import minimist from 'minimist'
 import _ from 'lodash'
 
@@ -13,7 +13,7 @@ register({
   ],
   plugins: [
     'transform-promise-to-bluebird',
-    ['transform-runtime', { 'polyfill': false }]
+    ['transform-runtime', { polyfill: false }]
   ]
 })
 

@@ -4,7 +4,7 @@ const Model = generator({
   files: [
     {
       action: 'create',
-      filepath: 'apps/<%= app %>/db/migrations/<%= moment().format(\'YYYYMMDDHHmmss\') %>_<%= _.snakeCase(pluralize(name)) %>.js',
+      filepath: 'apps/<%= app %>/db/migrations/<%= moment().format(\'YYYYMMDDHHmmss\') %>_create_<%= _.snakeCase(pluralize(name)) %>.js',
       template: 'migration.ejs'
     }, {
       action: 'create',

@@ -35,24 +35,26 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var entities = ['all', 'server', 'socket', 'worker', 'cron'];
+
 var start = exports.start = function () {
   var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(flags, args) {
-    var entities;
+    var entity;
     return _regenerator2.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            entities = args.entity || 'all';
+            entity = args.entity || 'all';
 
-            if (_lodash2.default.includes(['all', 'server', 'socket', 'worker', 'cron'], entities)) {
+            if (_lodash2.default.includes(entities, entity)) {
               _context.next = 3;
               break;
             }
 
-            throw new Error('\'' + entities + '\' is not a valid entity');
+            throw new Error('\'' + entity + '\' is not a valid entity');
 
           case 3:
-            if (!_lodash2.default.includes(['all', 'server'], entities)) {
+            if (!_lodash2.default.includes(['all', 'server'], entity)) {
               _context.next = 6;
               break;
             }
@@ -61,7 +63,7 @@ var start = exports.start = function () {
             return (0, _server2.default)();
 
           case 6:
-            if (!_lodash2.default.includes(['all', 'socket'], entities)) {
+            if (!_lodash2.default.includes(['all', 'socket'], entity)) {
               _context.next = 9;
               break;
             }
@@ -70,7 +72,7 @@ var start = exports.start = function () {
             return (0, _socket2.default)();
 
           case 9:
-            if (!_lodash2.default.includes(['all', 'worker'], entities)) {
+            if (!_lodash2.default.includes(['all', 'worker'], entity)) {
               _context.next = 12;
               break;
             }
@@ -79,7 +81,7 @@ var start = exports.start = function () {
             return (0, _worker2.default)();
 
           case 12:
-            if (!_lodash2.default.includes(['all', 'cron'], entities)) {
+            if (!_lodash2.default.includes(['all', 'cron'], entity)) {
               _context.next = 15;
               break;
             }

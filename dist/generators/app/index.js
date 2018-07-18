@@ -13,187 +13,180 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = (0, _generator2.default)({
   files: [{
     action: 'create',
-    filepath: 'admin/api/.gitkeep',
+    filepath: 'apps/<%= app %>/admin/api/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/ui/components/.gitkeep',
+    filepath: 'apps/<%= app %>/admin/ui/components/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/ui/views/.gitkeep',
+    filepath: 'apps/<%= app %>/admin/ui/views/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/api.js',
+    filepath: 'apps/<%= app %>/admin/api.js',
     template: 'api.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/navigation.js',
+    filepath: 'apps/<%= app %>/admin/navigation.js',
     template: 'navigation.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/rights.js',
+    filepath: 'apps/<%= app %>/admin/rights.js',
     template: 'rights.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/routes.js',
+    filepath: 'apps/<%= app %>/admin/routes.js',
     template: 'routes.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/search.js',
+    filepath: 'apps/<%= app %>/admin/search.js',
     template: 'search.ejs'
   }, {
     action: 'create',
-    filepath: 'admin/style.less',
+    filepath: 'apps/<%= app %>/admin/style.less',
     template: 'style.ejs'
   }, {
     action: 'create',
-    filepath: 'cron/.gitkeep',
+    filepath: 'apps/<%= app %>/cron/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'db/fixtures/.gitkeep',
+    filepath: 'apps/<%= app %>/db/fixtures/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'db/migrations/.gitkeep',
+    filepath: 'apps/<%= app %>/db/migrations/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'db/seeds/.gitkeep',
+    filepath: 'apps/<%= app %>/db/seeds/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'emails/.gitkeep',
+    filepath: 'apps/<%= app %>/emails/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'models/.gitkeep',
+    filepath: 'apps/<%= app %>/models/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'mailboxes/.gitkeep',
+    filepath: 'apps/<%= app %>/mailboxes/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'public/api/.gitkeep',
+    filepath: 'apps/<%= app %>/public/api/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'public/ui/index.js',
+    filepath: 'apps/<%= app %>/public/ui/index.js',
     template: 'index.ejs'
   }, {
     action: 'create',
-    filepath: 'public/ui/index.html',
+    filepath: 'apps/<%= app %>/public/ui/index.html',
     template: 'index.html.ejs'
   }, {
     action: 'create',
-    filepath: 'public/ui/index.less',
+    filepath: 'apps/<%= app %>/public/ui/index.less',
     template: 'index.less.ejs'
   }, {
     action: 'create',
-    filepath: 'public/ui/reducers.js',
+    filepath: 'apps/<%= app %>/public/ui/reducers.js',
     template: 'reducers.ejs'
   }, {
     action: 'create',
-    filepath: 'public/ui/app.js',
+    filepath: 'apps/<%= app %>/public/ui/app.js',
     template: 'app.js.ejs'
   }, {
     action: 'create',
-    filepath: 'public/ui/components/.gitkeep',
+    filepath: 'apps/<%= app %>/public/ui/components/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'public/ui/views/.gitkeep',
+    filepath: 'apps/<%= app %>/public/ui/views/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'public/ui/views/home.js',
+    filepath: 'apps/<%= app %>/public/ui/views/home.js',
     template: 'home.ejs'
   }, {
     action: 'create',
-    filepath: 'public/ui/views/not_found.js',
+    filepath: 'apps/<%= app %>/public/ui/views/not_found.js',
     template: 'not_found.ejs'
   }, {
     action: 'copy',
     src: 'public',
-    dest: 'public/public'
+    dest: 'apps/<%= app %>/public/public'
   }, {
     action: 'create',
-    filepath: 'queues/.gitkeep',
+    filepath: 'apps/<%= app %>/queues/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'serializers/.gitkeep',
+    filepath: 'apps/<%= app %>/serializers/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tasks/.gitkeep',
+    filepath: 'apps/<%= app %>/tasks/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/admin/api/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/admin/api/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/admin/ui/components/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/admin/ui/components/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/admin/ui/views/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/admin/ui/views/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/cron/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/cron/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/email/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/email/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/models/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/models/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/mailboxes/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/mailboxes/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/public/api/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/public/api/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/public/ui/components/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/public/ui/components/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/public/ui/views/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/public/ui/views/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/queues/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/queues/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/serializers/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/serializers/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'tests/tasks/.gitkeep',
+    filepath: 'apps/<%= app %>/tests/tasks/.gitkeep',
     template: 'gitkeep.ejs'
   }, {
     action: 'create',
-    filepath: 'app.js',
+    filepath: 'apps/<%= app %>/app.js',
     template: 'app.ejs'
-  }],
-  after: [{
-    description: 'installing node modules',
-    command: 'npm install'
-  }, {
-    description: 'building source',
-    command: 'npm run build'
   }]
 });
 

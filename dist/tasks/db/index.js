@@ -24,6 +24,16 @@ var build = [(0, _task2.default)({
   description: 'run down migrations',
   file: _path2.default.join(__dirname, 'db.js'),
   function: 'migrateDown'
+}), (0, _task2.default)({
+  command: 'db:schema:dump',
+  description: 'dump schema',
+  file: _path2.default.join(__dirname, 'schema.js'),
+  function: 'dump'
+}), (0, _task2.default)({
+  command: 'db:schema:load',
+  description: 'load Schema',
+  file: _path2.default.join(__dirname, 'schema.js'),
+  function: 'load'
 })];
 
 exports.default = build;

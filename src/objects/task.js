@@ -7,9 +7,9 @@ const task = (args) => {
 
   const options = normalize(args)
 
-  const source = require(options.file)
-
   const action = async (...args) => {
+
+    const source = require(options.file)
 
     await source[options.function](...args)
 

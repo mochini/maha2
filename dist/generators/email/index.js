@@ -13,11 +13,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Migration = (0, _generator2.default)({
   files: [{
     action: 'create',
-    filepath: 'emails/<%= _.snakeCase(name) %>_email/index.js',
+    filepath: 'apps/<%= app %>/emails/<%= _.snakeCase(name) %>_email/index.js',
     template: 'email.ejs'
   }, {
     action: 'create',
-    filepath: 'emails/<%= _.snakeCase(name) %>_email/html.ejs'
+    filepath: 'apps/<%= app %>/emails/<%= _.snakeCase(name) %>_email/html.ejs'
   }]
 });
 

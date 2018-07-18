@@ -27,28 +27,28 @@ var task = function task(args) {
 
   var options = normalize(args);
 
-  var source = require(options.file);
-
   var action = function () {
     var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
-      var _args = arguments;
+      var source,
+          _args = arguments;
       return _regenerator2.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              source = require(options.file);
+              _context.next = 3;
               return source[options.function].apply(source, _args);
 
-            case 2:
+            case 3:
               if (!options.exit) {
-                _context.next = 5;
+                _context.next = 6;
                 break;
               }
 
-              _context.next = 5;
+              _context.next = 6;
               return process.exit();
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }

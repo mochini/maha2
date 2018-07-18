@@ -9,8 +9,6 @@ var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-require('../lib/environment');
-
 var _babelRegister = require('babel-register');
 
 var _babelRegister2 = _interopRequireDefault(_babelRegister);
@@ -27,9 +25,10 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import '../lib/environment'
 (0, _babelRegister2.default)({
   presets: ['es2015', 'react', 'stage-0'],
-  plugins: ['transform-promise-to-bluebird', ['transform-runtime', { 'polyfill': false }]]
+  plugins: ['transform-promise-to-bluebird', ['transform-runtime', { polyfill: false }]]
 });
 
 var parse = function parse(args) {

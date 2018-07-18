@@ -85,8 +85,6 @@ const copyItem = async (file, templatesPath, data) => {
 
   const destPath = ejs.render(path.join(file.dest), data)
 
-  console.log(srcPath, destPath)
-
   action('copy', destPath)
 
   await Promise.promisify(ncp)(path.resolve(srcPath), path.resolve(destPath))

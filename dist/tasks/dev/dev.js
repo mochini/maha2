@@ -37,24 +37,22 @@ var clientWatch = function clientWatch(name, base, port) {
 
   var compiler = (0, _webpack4.default)((0, _webpack2.default)(name, base, port));
 
-  console.log(name, _path2.default.join(base, 'public'));
-
   var devserver = new _webpackDevServer2.default(compiler, {
     contentBase: _path2.default.join(base, 'public'),
     compress: true,
     disableHostCheck: true,
-    host: '0.0.0.0',
-    hot: true,
-    proxy: {
-      '*': 'http://localhost:3001'
-    },
-    stats: 'errors-only',
-    watchContentBase: true,
-    open: true,
     historyApiFallback: {
       disableDotRule: true,
       rewrites: [{ from: /.*/, to: 'index.html' }]
-    }
+    },
+    host: '0.0.0.0',
+    hot: true,
+    open: true,
+    // proxy: {
+    //   '*': 'http://localhost:3001'
+    // },
+    stats: 'errors-only',
+    watchContentBase: true
   });
 
   devserver.listen(port, '0.0.0.0', function () {
@@ -66,10 +64,13 @@ var dev = exports.dev = function dev(flags, args) {
 
   (0, _watch2.default)('maha', 'start');
 
-  clientWatch('admin', _path2.default.resolve('node_modules', 'maha', 'src', 'admin'), 3000);
+  clientWatch('admin', _path2.default.resolve('node_modules', 'maha', 'src', 'admin'), 4000);
 
-  _fs2.default.readdirSync(_path2.default.join('apps')).map(function (app, index) {
+  _fs2.default.readdirSync(_path2.default.join('apps')).filter(function (app) {
 
-    clientWatch(app, _path2.default.resolve('apps', app, 'public'), 4000 + index);
+    return _fs2.default.lstatSync(_path2.default.join('apps', app)).isDirectory();
+  }).map(function (app, index) {
+
+    clientWatch(app, _path2.default.resolve('apps', app, 'public'), 4001 + index);
   });
 };

@@ -102,6 +102,15 @@ var generate = exports.generate = function () {
             }());
 
           case 11:
+            if (!generator.after) {
+              _context2.next = 14;
+              break;
+            }
+
+            _context2.next = 14;
+            return runHooks(generator.after, data);
+
+          case 14:
           case 'end':
             return _context2.stop();
         }
@@ -146,7 +155,6 @@ var destroy = exports.destroy = function () {
 
 var generateFile = function () {
   var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(file, templatesPath, data) {
-    var renderedPath, filepath;
     return _regenerator2.default.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
@@ -157,30 +165,24 @@ var generateFile = function () {
             }
 
             _context4.next = 3;
-            return copyItem(_path2.default.join(templatesPath, file.src), _path2.default.join(data.root, file.dest));
+            return copyItem(file, templatesPath, data);
 
           case 3:
             return _context4.abrupt('return', _context4.sent);
 
           case 4:
-            renderedPath = _ejs2.default.render(file.filepath, data);
-            filepath = _path2.default.join(data.root, renderedPath);
-
-
-            makeDirectory(filepath, data);
-
             if (!(file.action === 'create')) {
-              _context4.next = 11;
+              _context4.next = 8;
               break;
             }
 
-            _context4.next = 10;
-            return createFile(file, filepath, templatesPath, data);
+            _context4.next = 7;
+            return createFile(file, templatesPath, data);
 
-          case 10:
+          case 7:
             return _context4.abrupt('return', _context4.sent);
 
-          case 11:
+          case 8:
           case 'end':
             return _context4.stop();
         }
@@ -210,18 +212,22 @@ var makeDirectory = function makeDirectory(filepath, data) {
 };
 
 var copyItem = function () {
-  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(src, dest) {
+  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(file, templatesPath, data) {
+    var srcPath, destPath;
     return _regenerator2.default.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
+            srcPath = _ejs2.default.render(_path2.default.join(templatesPath, file.src), data);
+            destPath = _ejs2.default.render(_path2.default.join(file.dest), data);
 
-            (0, _console.action)('copy', dest);
 
-            _context5.next = 3;
-            return (0, _bluebird.promisify)(_ncp2.default)(src, dest);
+            (0, _console.action)('copy', destPath);
 
-          case 3:
+            _context5.next = 5;
+            return (0, _bluebird.promisify)(_ncp2.default)(_path2.default.resolve(srcPath), _path2.default.resolve(destPath));
+
+          case 5:
           case 'end':
             return _context5.stop();
         }
@@ -229,12 +235,18 @@ var copyItem = function () {
     }, _callee5, undefined);
   }));
 
-  return function copyItem(_x7, _x8) {
+  return function copyItem(_x7, _x8, _x9) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-var createFile = function createFile(file, filepath, templatesPath, data) {
+var createFile = function createFile(file, templatesPath, data) {
+
+  var renderedPath = _ejs2.default.render(file.filepath, data);
+
+  var filepath = _path2.default.join(data.root, renderedPath);
+
+  makeDirectory(filepath, data);
 
   if (_fs2.default.existsSync(filepath)) return (0, _console.action)('identical', filepath);
 
@@ -267,8 +279,7 @@ var getData = function getData(template, app, config, initname) {
     app: app,
     name: name,
     app_name: app_name,
-    platform: _path2.default.resolve(),
-    root: _path2.default.join('apps', app),
+    root: '',
     path: parts.join('/')
   };
 };
@@ -306,7 +317,7 @@ var runHooks = function () {
                         (0, _console.action)('exec', hook.description);
 
                         _context6.next = 3;
-                        return (0, _exec2.default)(hook.command, data.root + '/' + data.path);
+                        return (0, _exec2.default)(hook.command, data.path);
 
                       case 3:
                       case 'end':
@@ -316,7 +327,7 @@ var runHooks = function () {
                 }, _callee6, undefined);
               }));
 
-              return function (_x11) {
+              return function (_x12) {
                 return _ref7.apply(this, arguments);
               };
             }());
@@ -332,7 +343,7 @@ var runHooks = function () {
     }, _callee7, undefined);
   }));
 
-  return function runHooks(_x9, _x10) {
+  return function runHooks(_x10, _x11) {
     return _ref6.apply(this, arguments);
   };
 }();
