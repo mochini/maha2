@@ -1,3 +1,4 @@
+import '../../lib/environment'
 import server from '../../entities/server'
 import socket from '../../entities/socket'
 import worker from '../../entities/worker'

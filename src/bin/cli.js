@@ -32,9 +32,7 @@ export const run = async (parsed) => {
 
   } catch(err) {
 
-    write({ color: 'red', content: err.message })
-
-    process.exit()
+    console.log(err)
 
   }
 
