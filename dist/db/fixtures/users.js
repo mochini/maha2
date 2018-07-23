@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var userFixtures = new _fixtures2.default({
 
-  tableName: 'foo_contacts',
+  tableName: 'maha_users',
 
   records: [{
     id: 1,

@@ -4,9 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _maha = require('maha');
+var _fixtures = require('../../objects/fixtures');
 
-var contactFixtures = new _maha.Fixtures({
+var _fixtures2 = _interopRequireDefault(_fixtures);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var contactSeeds = new _fixtures2.default({
 
   tableName: 'foo_contacts',
 
@@ -19,4 +23,4 @@ var contactFixtures = new _maha.Fixtures({
 
 });
 
-exports.default = contactFixtures;
+exports.default = contactSeeds;

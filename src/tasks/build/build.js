@@ -117,6 +117,8 @@ export const build = async (flags, args) => {
 
   await buildItems(path.join('apps'), path.join('build','apps'))
 
+  await buildItems(path.join('packages'), path.join('build','packages'))
+
   await buildPublic('admin', path.resolve('node_modules', 'maha', 'src', 'admin'))
 
   await Promise.map(fs.readdirSync(path.join('apps')), async (app, index) => {

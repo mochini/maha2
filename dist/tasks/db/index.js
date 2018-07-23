@@ -59,6 +59,11 @@ var build = [(0, _task2.default)({
   description: 'load fixtures',
   file: _path2.default.join(__dirname, 'migrate.js'),
   function: 'fixturesLoad'
+}), (0, _task2.default)({
+  command: 'db:seeds:load',
+  description: 'load seeds',
+  file: _path2.default.join(__dirname, 'migrate.js'),
+  function: 'seedsLoad'
 })];
 
 exports.default = build;

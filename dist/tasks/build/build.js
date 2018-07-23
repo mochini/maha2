@@ -262,10 +262,14 @@ var build = exports.build = function () {
 
           case 4:
             _context6.next = 6;
-            return buildPublic('admin', _path2.default.resolve('node_modules', 'maha', 'src', 'admin'));
+            return buildItems(_path2.default.join('packages'), _path2.default.join('build', 'packages'));
 
           case 6:
             _context6.next = 8;
+            return buildPublic('admin', _path2.default.resolve('node_modules', 'maha', 'src', 'admin'));
+
+          case 8:
+            _context6.next = 10;
             return (0, _bluebird.map)(_fs2.default.readdirSync(_path2.default.join('apps')), function () {
               var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(app, index) {
                 return _regenerator2.default.wrap(function _callee5$(_context5) {
@@ -288,7 +292,7 @@ var build = exports.build = function () {
               };
             }());
 
-          case 8:
+          case 10:
           case 'end':
             return _context6.stop();
         }
