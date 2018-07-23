@@ -77,7 +77,7 @@ var run = exports.run = function () {
             return task.action(parsed.flags, args);
 
           case 7:
-            _context.next = 13;
+            _context.next = 12;
             break;
 
           case 9:
@@ -85,11 +85,9 @@ var run = exports.run = function () {
             _context.t0 = _context['catch'](4);
 
 
-            (0, _console.write)({ color: 'red', content: _context.t0.message });
+            console.log(_context.t0);
 
-            process.exit();
-
-          case 13:
+          case 12:
           case 'end':
             return _context.stop();
         }

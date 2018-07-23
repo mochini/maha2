@@ -17,6 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var git = (0, _task2.default)({
   command: 'git',
   description: 'manage apps via git',
+  args: [{ name: 'action', description: 'git action' }, { name: 'repository', description: 'git repository' }],
   file: _path2.default.join(__dirname, 'git.js'),
   function: 'git'
 });

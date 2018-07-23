@@ -7,6 +7,14 @@ import _ from 'lodash'
 import ejs from 'ejs'
 import fs from 'fs'
 
+export const version = async (flags, args) => {
+
+  const migration = await knex('schema_migrations').orderBy('migration', 'desc').limit(1)
+
+  action('version', migration[0].migration.split('_')[0])
+
+}
+
 export const dump = async (flags, args) => {
 
   action('dump', 'schema')

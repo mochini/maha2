@@ -19,6 +19,14 @@ var App = (0, _generator2.default)({
     action: 'create',
     filepath: '<%= name %>/package.json',
     template: 'package.ejs'
+  }, {
+    action: 'create',
+    filepath: '<%= name %>/.gitignore',
+    template: 'gitignore.ejs'
+  }, {
+    action: 'create',
+    filepath: '<%= name %>/config/deploy.js',
+    template: 'deploy.ejs'
   }],
   after: [{
     description: 'installing node modules',

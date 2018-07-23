@@ -18,6 +18,13 @@ const build = [
   }),
 
   task({
+    command: 'db:version',
+    description: 'print current schema version',
+    file: path.join(__dirname, 'schema.js'),
+    function: 'version'
+  }),
+
+  task({
     command: 'db:migrate:up',
     description: 'run up migrations',
     file: path.join(__dirname, 'migrate.js'),
@@ -47,9 +54,23 @@ const build = [
 
   task({
     command: 'db:schema:load',
-    description: 'load Schema',
+    description: 'load schema',
     file: path.join(__dirname, 'schema.js'),
     function: 'load'
+  }),
+
+  task({
+    command: 'db:fixtures:load',
+    description: 'load fixtures',
+    file: path.join(__dirname, 'migrate.js'),
+    function: 'fixturesLoad'
+  }),
+
+  task({
+    command: 'db:seeds:load',
+    description: 'load seeds',
+    file: path.join(__dirname, 'migrate.js'),
+    function: 'seedsLoad'
   })
 
 ]

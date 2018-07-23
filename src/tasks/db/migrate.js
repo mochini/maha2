@@ -10,11 +10,51 @@ export const migrateUp = (flags, args) => _migrate('up')
 
 export const migrateDown = (flags, args) => _migrate('down')
 
+export const fixturesLoad = (flags, args) => _loadData('fixtures')
+
+export const seedsLoad = (flags, args) => _loadData('seeds')
+
 export const migrateRedo = async (flags, args) => {
 
   await _migrate('down')
 
   await _migrate('up')
+
+}
+
+const _loadData = async (type) => {
+
+  const files = _getSortedFiles(type)
+
+  await Promise.mapSeries(files, async file => {
+
+    const fixture = require(path.resolve(file.path)).default
+
+    await knex.transaction(async trx => {
+
+      await trx.raw('set session_replication_role = replica')
+
+      await trx(fixture.tableName).del()
+
+      const chunks = _.chunk(fixture.records, 50)
+
+      await Promise.mapSeries(chunks, async chunk => await trx(fixture.tableName).insert(chunk)).catch(console.log)
+
+      try {
+
+        const idColumn = await trx.raw(`SELECT column_name FROM information_schema.columns WHERE table_name='${fixture.tableName}' and column_name='id'`)
+
+        if(idColumn.rowCount > 0) await trx.raw(`SELECT pg_catalog.setval(pg_get_serial_sequence('${fixture.tableName}', 'id'), MAX(id)) FROM ${fixture.tableName}`)
+
+      } catch(err) {}
+
+      await trx.raw('set session_replication_role = default')
+
+      action('import', fixture.tableName)
+
+    })
+
+  })
 
 }
 
@@ -50,7 +90,7 @@ const _findOrCreateSchema = async () => {
 
 const _getSortedFiles = (targetPath) => {
 
-  return collectObjects('db/migrations/*').filter(file => {
+  return collectObjects(`db/${targetPath}/*`).filter(file => {
 
     return !_.isNil(file.match(/.*\.js$/))
 

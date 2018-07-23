@@ -13,6 +13,8 @@ var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
+require('../../lib/environment');
+
 var _server = require('../../entities/server');
 
 var _server2 = _interopRequireDefault(_server);

@@ -18,6 +18,7 @@ var shipit = (0, _task2.default)({
   command: 'shipit',
   description: 'ship code',
   file: _path2.default.join(__dirname, 'shipit.js'),
+  args: [{ name: 'environment', description: 'target environment' }, { name: 'command', description: 'command to execute' }],
   function: 'shipit'
 });
 
