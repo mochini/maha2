@@ -3,10 +3,11 @@ import { hot } from 'react-hot-loader'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Root from './root'
+import Platform from 'packages/admin/platform'
 
 initReactFastclick()
 
-class Platform extends React.Component {
+class App extends React.Component {
 
   static propTypes = {
     appBadges: PropTypes.array,
@@ -21,7 +22,7 @@ class Platform extends React.Component {
     const { appReducers } = this.props
     return (
       <Root reducers={ appReducers }>
-        <div>Hello World!</div>
+        <Platform { ...this.props } />
       </Root>
     )
   }
@@ -29,4 +30,4 @@ class Platform extends React.Component {
 }
 
 
-export default hot(module)(Platform)
+export default hot(module)(App)

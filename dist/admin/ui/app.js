@@ -38,19 +38,23 @@ var _root = require('./root');
 
 var _root2 = _interopRequireDefault(_root);
 
+var _platform = require('packages/admin/platform');
+
+var _platform2 = _interopRequireDefault(_platform);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactFastclick2.default)();
 
-var Platform = function (_React$Component) {
-  (0, _inherits3.default)(Platform, _React$Component);
+var App = function (_React$Component) {
+  (0, _inherits3.default)(App, _React$Component);
 
-  function Platform() {
-    (0, _classCallCheck3.default)(this, Platform);
-    return (0, _possibleConstructorReturn3.default)(this, (Platform.__proto__ || Object.getPrototypeOf(Platform)).apply(this, arguments));
+  function App() {
+    (0, _classCallCheck3.default)(this, App);
+    return (0, _possibleConstructorReturn3.default)(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(Platform, [{
+  (0, _createClass3.default)(App, [{
     key: 'render',
     value: function render() {
       var appReducers = this.props.appReducers;
@@ -58,18 +62,14 @@ var Platform = function (_React$Component) {
       return _react2.default.createElement(
         _root2.default,
         { reducers: appReducers },
-        _react2.default.createElement(
-          'div',
-          null,
-          'Hello World!'
-        )
+        _react2.default.createElement(_platform2.default, this.props)
       );
     }
   }]);
-  return Platform;
+  return App;
 }(_react2.default.Component);
 
-Platform.propTypes = {
+App.propTypes = {
   appBadges: _propTypes2.default.array,
   appReducers: _propTypes2.default.array,
   appRoutes: _propTypes2.default.array,
@@ -77,4 +77,4 @@ Platform.propTypes = {
   appUserFields: _propTypes2.default.array,
   appUserValues: _propTypes2.default.array
 };
-exports.default = (0, _reactHotLoader.hot)(module)(Platform);
+exports.default = (0, _reactHotLoader.hot)(module)(App);

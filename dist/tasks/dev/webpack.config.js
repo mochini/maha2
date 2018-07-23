@@ -78,7 +78,12 @@ var config = function config(name, base, port) {
         'DATA_ASSET_HOST': JSON.stringify(process.env.DATA_ASSET_HOST),
         'ROLLBAR_CLIENT_TOKEN': JSON.stringify(process.env.ROLLBAR_CLIENT_TOKEN)
       }
-    })]
+    })],
+    resolve: {
+      alias: {
+        packages: _path2.default.resolve('packages')
+      }
+    }
   };
 };
 

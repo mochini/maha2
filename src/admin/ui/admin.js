@@ -1,13 +1,13 @@
 import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Platform from './platform'
+import App from './App'
 
 const admin = (features) => {
 
   const element = document.getElementById('platform')
 
-  ReactDOM.render(<Platform { ...features } />, element)
+  ReactDOM.render(<App { ...features } />, element)
 
 }
 

@@ -14,9 +14,9 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _platform = require('./platform');
+var _App = require('./App');
 
-var _platform2 = _interopRequireDefault(_platform);
+var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,7 +24,7 @@ var admin = function admin(features) {
 
   var element = document.getElementById('platform');
 
-  _reactDom2.default.render(_react2.default.createElement(_platform2.default, features), element);
+  _reactDom2.default.render(_react2.default.createElement(_App2.default, features), element);
 };
 
 exports.default = admin;

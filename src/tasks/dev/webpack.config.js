@@ -67,7 +67,12 @@ const config = (name, base, port) => ({
         'ROLLBAR_CLIENT_TOKEN': JSON.stringify(process.env.ROLLBAR_CLIENT_TOKEN)
       }
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      packages: path.resolve('packages')
+    }
+  }
 })
 
 export default config
