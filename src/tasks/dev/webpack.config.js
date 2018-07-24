@@ -1,5 +1,4 @@
-import MahaScriptPlugin from '../../lib/webpack/maha_script_plugin'
-import MahaStylePlugin from '../../lib/webpack/maha_style_plugin'
+import MahaCompilerPlugin from '../../lib/webpack/maha_compiler_plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
@@ -11,8 +10,8 @@ const config = (name, base, port) => ({
   entry: [
     `webpack-dev-server/client?http://localhost:${port}`,
     'webpack/hot/only-dev-server',
-    path.join(base, 'ui', 'index.js'),
-    path.join(base, 'ui', 'index.less')
+    path.resolve('build', `${name}.js`),
+    path.resolve('build', `${name}.less`)
   ],
   module: {
     rules: [
@@ -47,8 +46,7 @@ const config = (name, base, port) => ({
     filename: 'application.js'
   },
   plugins: [
-    new MahaScriptPlugin(),
-    new MahaStylePlugin(),
+    new MahaCompilerPlugin(name),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(base, 'ui', 'index.html')
@@ -70,6 +68,7 @@ const config = (name, base, port) => ({
   ],
   resolve: {
     alias: {
+      apps: path.resolve('apps'),
       packages: path.resolve('packages')
     }
   }

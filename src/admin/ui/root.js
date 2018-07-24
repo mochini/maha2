@@ -1,11 +1,11 @@
 import authenticationMiddleware from '../../lib/redux/authentication_middleware'
 import fingerprintMiddleware from '../../lib/redux/fingerprint_middleware'
 import tokenMiddleware from '../../lib/redux/token_middleware'
-// import createSocketioClient from 'redux-socketio-client'
+import createSocketioClient from 'redux-socketio-client'
 import { createStore, applyMiddleware } from 'redux'
-// import createlocalStorage from 'redux-local-storage'
-// import { combineReducers } from 'redux-rubberstamp'
-// import createApiRequest from 'redux-api-request'
+import createlocalStorage from 'redux-local-storage'
+import { combineReducers } from 'redux-rubberstamp'
+import createApiRequest from 'redux-api-request'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
@@ -34,29 +34,25 @@ class Root extends React.Component {
   }
 
   _getStore() {
-    // const reducer = combineReducers([
-      // ...Object.values(Reframe),
-      // ...this.props.reducers
-    // ])
-    const reducer = (state, action) => state
-
-    // const socketUrl = `${window.location.protocol}//${window.location.hostname}:${process.env.SOCKET_PORT}`
+    const reducer = combineReducers(this.props.reducers)
 
     const loggerMiddleware = createLogger({ collapsed: true })
 
-    // const apiRequestMiddleware = createApiRequest()
+    const apiRequestMiddleware = createApiRequest()
 
-    // const socketioClientMiddleware = createSocketioClient({ url: socketUrl })
+    const socketUrl = `${window.location.protocol}//${window.location.hostname}:${process.env.SOCKET_PORT}`
 
-    // const localStorageMiddleware = createlocalStorage()
+    const socketioClientMiddleware = createSocketioClient({ url: socketUrl })
+
+    const localStorageMiddleware = createlocalStorage()
 
     const middleware = [
       thunkMiddleware,
       tokenMiddleware,
       fingerprintMiddleware,
-      // apiRequestMiddleware,
-      // socketioClientMiddleware,
-      // localStorageMiddleware,
+      apiRequestMiddleware,
+      socketioClientMiddleware,
+      localStorageMiddleware,
       authenticationMiddleware,
       ...(process.env.NODE_ENV !== 'production') ? [loggerMiddleware] : []
     ]

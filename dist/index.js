@@ -3,11 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Queue = exports.Seeds = exports.task = exports.Schema = exports.serializer = exports.Model = exports.Migration = exports.Fixtures = exports.cron = exports.App = undefined;
+exports.Queue = exports.Seeds = exports.task = exports.Schema = exports.serializer = exports.Model = exports.Migration = exports.Fixtures = exports.cron = exports.Api = exports.App = undefined;
 
 var _app = require('./objects/app');
 
 var _app2 = _interopRequireDefault(_app);
+
+var _api = require('./objects/api');
+
+var _api2 = _interopRequireDefault(_api);
 
 var _cron2 = require('./objects/cron');
 
@@ -48,6 +52,7 @@ var _queue2 = _interopRequireDefault(_queue);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.App = _app2.default;
+exports.Api = _api2.default;
 exports.cron = _cron3.default;
 exports.Fixtures = _fixtures2.default;
 exports.Migration = _migration2.default;

@@ -1,6 +1,6 @@
-import admin from './index'
+import admin from 'maha/dist/admin/ui'
 <% for(var i = 0; i < reducers.length; i++) {-%>
-import <%= reducers[i].app %><%= reducers[i].name %>Reducer from '<%= reducers[i].filepath %>'
+import <%= reducers[i].module %><%= reducers[i].name %>Reducer from '<%= reducers[i].filepath %>'
 <% } -%>
 <% for(var i = 0; i < routes.length; i++) {-%>
 import <%= routes[i].name %>Routes from '<%= routes[i].filepath %>'
@@ -19,25 +19,31 @@ import <%= userValues[i].name %>UserValues from '<%= userValues[i].filepath %>'
 <% } -%>
 
 admin({
-  appBadges: [<% for(var i = 0; i < badges.length; i++) { -%>
+  appBadges: [
+<% for(var i = 0; i < badges.length; i++) { -%>
     ...<%= badges[i].name %>Badges.map(badge => ({
       app: '<%= badges[i].name %>',
       ...badge
     })),
-  <% } -%>],
-  appReducers: [<% for(var i = 0; i < reducers.length; i++) {-%>
-    <%= reducers[i].app %><%= reducers[i].name %>Reducer,
-  <% } -%>],
-  appRoutes: [<% for(var i = 0; i < routes.length; i++) {-%>
-    { path: '<%= routes[i].config.path %>', children: <%= routes[i].name %>Routes },
-  <% } -%>],
-  appUserTasks: [<% for(var i = 0; i < userTasks.length; i++) {-%>
+<% } -%>  ],
+  appReducers: [
+<% for(var i = 0; i < reducers.length; i++) {-%>
+    <%= reducers[i].module %><%= reducers[i].name %>Reducer,
+<% } -%>  ],
+  appRoutes: [
+<% for(var i = 0; i < routes.length; i++) {-%>
+    { path: '/<%= routes[i].name %>', children: <%= routes[i].name %>Routes },
+<% } -%>  ],
+  appUserTasks: [
+<% for(var i = 0; i < userTasks.length; i++) {-%>
     <%= userTasks[i].name %>UserTasks,
-  <% } -%>],
-  appUserFields: [<% for(var i = 0; i < userFields.length; i++) {-%>
+<% } -%>  ],
+  appUserFields: [
+<% for(var i = 0; i < userFields.length; i++) {-%>
     <%= userFields[i].name %>UserFields,
-  <% } -%>],
-  appUserValues: [<% for(var i = 0; i < userValues.length; i++) {-%>
+<% } -%>  ],
+  appUserValues: [
+<% for(var i = 0; i < userValues.length; i++) {-%>
     <%= userValues[i].name %>UserValues,
-  <% } -%>]
+<% } -%>]
 })

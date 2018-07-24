@@ -26,7 +26,8 @@ const clientWatch = (name, base, port) => {
     // proxy: {
     //   '*': 'http://localhost:3001'
     // },
-    stats: 'errors-only',
+    quiet: true,
+    // stats: 'errors-only',
     watchContentBase: true
   })
 
@@ -42,15 +43,14 @@ export const dev = (flags, args) => {
 
   clientWatch('admin', path.resolve('node_modules', 'maha', 'src', 'admin'), 4000)
 
-  fs.readdirSync(path.join('apps')).filter(app => {
-
-    return fs.lstatSync(path.join('apps', app)).isDirectory()
-
-  }).map((app, index) => {
-
-
-    clientWatch(app, path.resolve('apps', app, 'public'), 4001 + index)
-
-  })
+  // fs.readdirSync(path.join('apps')).filter(app => {
+  //
+  //   return fs.lstatSync(path.join('apps', app)).isDirectory()
+  //
+  // }).map((app, index) => {
+  //
+  //   clientWatch(app, path.resolve('apps', app, 'public'), 4001 + index)
+  //
+  // })
 
 }

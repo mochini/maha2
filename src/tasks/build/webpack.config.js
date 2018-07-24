@@ -1,5 +1,4 @@
-import MahaScriptPlugin from '../../lib/webpack/maha_script_plugin'
-import MahaStylePlugin from '../../lib/webpack/maha_style_plugin'
+import MahaCompilerPlugin from '../../lib/webpack/maha_compiler_plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import autoprefixer from 'autoprefixer'
@@ -46,8 +45,7 @@ const config = (name, base) => ({
     publicPath: ''
   },
   plugins: [
-    new MahaScriptPlugin(),
-    new MahaStylePlugin(),
+    new MahaCompilerPlugin(name),
     new MiniCssExtractPlugin({
       path: path.resolve('build', 'public', name),
       filename: path.join('css', 'bundle-[hash].min.css'),
@@ -72,7 +70,13 @@ const config = (name, base) => ({
         'ROLLBAR_CLIENT_TOKEN': JSON.stringify(process.env.ROLLBAR_CLIENT_TOKEN)
       }
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      apps: path.resolve('apps'),
+      packages: path.resolve('packages')
+    }
+  }
 })
 
 export default config

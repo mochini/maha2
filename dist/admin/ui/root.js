@@ -36,7 +36,21 @@ var _token_middleware = require('../../lib/redux/token_middleware');
 
 var _token_middleware2 = _interopRequireDefault(_token_middleware);
 
+var _reduxSocketioClient = require('redux-socketio-client');
+
+var _reduxSocketioClient2 = _interopRequireDefault(_reduxSocketioClient);
+
 var _redux = require('redux');
+
+var _reduxLocalStorage = require('redux-local-storage');
+
+var _reduxLocalStorage2 = _interopRequireDefault(_reduxLocalStorage);
+
+var _reduxRubberstamp = require('redux-rubberstamp');
+
+var _reduxApiRequest = require('redux-api-request');
+
+var _reduxApiRequest2 = _interopRequireDefault(_reduxApiRequest);
 
 var _reduxLogger = require('redux-logger');
 
@@ -56,7 +70,6 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import createSocketioClient from 'redux-socketio-client'
 var Root = function (_React$Component) {
   (0, _inherits3.default)(Root, _React$Component);
 
@@ -81,29 +94,19 @@ var Root = function (_React$Component) {
   }, {
     key: '_getStore',
     value: function _getStore() {
-      // const reducer = combineReducers([
-      // ...Object.values(Reframe),
-      // ...this.props.reducers
-      // ])
-      var reducer = function reducer(state, action) {
-        return state;
-      };
-
-      // const socketUrl = `${window.location.protocol}//${window.location.hostname}:${process.env.SOCKET_PORT}`
+      var reducer = (0, _reduxRubberstamp.combineReducers)(this.props.reducers);
 
       var loggerMiddleware = (0, _reduxLogger.createLogger)({ collapsed: true });
 
-      // const apiRequestMiddleware = createApiRequest()
+      var apiRequestMiddleware = (0, _reduxApiRequest2.default)();
 
-      // const socketioClientMiddleware = createSocketioClient({ url: socketUrl })
+      var socketUrl = window.location.protocol + '//' + window.location.hostname + ':' + process.env.SOCKET_PORT;
 
-      // const localStorageMiddleware = createlocalStorage()
+      var socketioClientMiddleware = (0, _reduxSocketioClient2.default)({ url: socketUrl });
 
-      var middleware = [_reduxThunk2.default, _token_middleware2.default, _fingerprint_middleware2.default,
-      // apiRequestMiddleware,
-      // socketioClientMiddleware,
-      // localStorageMiddleware,
-      _authentication_middleware2.default].concat((0, _toConsumableArray3.default)(process.env.NODE_ENV !== 'production' ? [loggerMiddleware] : []));
+      var localStorageMiddleware = (0, _reduxLocalStorage2.default)();
+
+      var middleware = [_reduxThunk2.default, _token_middleware2.default, _fingerprint_middleware2.default, apiRequestMiddleware, socketioClientMiddleware, localStorageMiddleware, _authentication_middleware2.default].concat((0, _toConsumableArray3.default)(process.env.NODE_ENV !== 'production' ? [loggerMiddleware] : []));
 
       var createStoreWithMiddleware = _redux.applyMiddleware.apply(undefined, (0, _toConsumableArray3.default)(middleware))(_redux.createStore);
 
@@ -113,10 +116,6 @@ var Root = function (_React$Component) {
   return Root;
 }(_react2.default.Component);
 // import Reframe from 'reframe'
-
-// import createlocalStorage from 'redux-local-storage'
-// import { combineReducers } from 'redux-rubberstamp'
-// import createApiRequest from 'redux-api-request'
 
 
 Root.propTypes = {

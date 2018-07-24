@@ -45,7 +45,7 @@ var serverWatch = function serverWatch(entity, command) {
 
     if (event.type === 'start') {
 
-      (0, _console.info)(entity, 'Compiled successfully');
+      (0, _console.info)(entity, 'Finished compiling server');
     } else if (event.type === 'restart') {
 
       (0, _console.info)(entity, 'Detected change in ' + event.data[0].replace(root + '/', ''));

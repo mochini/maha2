@@ -36,7 +36,7 @@ const serverWatch = (entity, command) => {
 
     if (event.type === 'start') {
 
-      info(entity, 'Compiled successfully')
+      info(entity, 'Finished compiling server')
 
     } else if (event.type === 'restart') {
 

@@ -1,5 +1,7 @@
 export App from './objects/app'
 
+export Api from './objects/api'
+
 export cron from './objects/cron'
 
 export Fixtures from './objects/fixtures'

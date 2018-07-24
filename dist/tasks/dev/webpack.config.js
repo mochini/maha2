@@ -4,13 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _maha_script_plugin = require('../../lib/webpack/maha_script_plugin');
+var _maha_compiler_plugin = require('../../lib/webpack/maha_compiler_plugin');
 
-var _maha_script_plugin2 = _interopRequireDefault(_maha_script_plugin);
-
-var _maha_style_plugin = require('../../lib/webpack/maha_style_plugin');
-
-var _maha_style_plugin2 = _interopRequireDefault(_maha_style_plugin);
+var _maha_compiler_plugin2 = _interopRequireDefault(_maha_compiler_plugin);
 
 var _htmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -37,7 +33,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var config = function config(name, base, port) {
   return {
     devtool: 'source-map',
-    entry: ['webpack-dev-server/client?http://localhost:' + port, 'webpack/hot/only-dev-server', _path2.default.join(base, 'ui', 'index.js'), _path2.default.join(base, 'ui', 'index.less')],
+    entry: ['webpack-dev-server/client?http://localhost:' + port, 'webpack/hot/only-dev-server', _path2.default.resolve('build', name + '.js'), _path2.default.resolve('build', name + '.less')],
     module: {
       rules: [{
         test: /\.less$/,
@@ -63,7 +59,7 @@ var config = function config(name, base, port) {
     output: {
       filename: 'application.js'
     },
-    plugins: [new _maha_script_plugin2.default(), new _maha_style_plugin2.default(), new _webpack2.default.HotModuleReplacementPlugin(), new _htmlWebpackPlugin2.default({
+    plugins: [new _maha_compiler_plugin2.default(name), new _webpack2.default.HotModuleReplacementPlugin(), new _htmlWebpackPlugin2.default({
       template: _path2.default.join(base, 'ui', 'index.html')
     }), new _webpack2.default.DefinePlugin({
       'process.env': {
@@ -81,6 +77,7 @@ var config = function config(name, base, port) {
     })],
     resolve: {
       alias: {
+        apps: _path2.default.resolve('apps'),
         packages: _path2.default.resolve('packages')
       }
     }

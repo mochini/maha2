@@ -4,13 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _maha_script_plugin = require('../../lib/webpack/maha_script_plugin');
+var _maha_compiler_plugin = require('../../lib/webpack/maha_compiler_plugin');
 
-var _maha_script_plugin2 = _interopRequireDefault(_maha_script_plugin);
-
-var _maha_style_plugin = require('../../lib/webpack/maha_style_plugin');
-
-var _maha_style_plugin2 = _interopRequireDefault(_maha_style_plugin);
+var _maha_compiler_plugin2 = _interopRequireDefault(_maha_compiler_plugin);
 
 var _miniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -67,7 +63,7 @@ var config = function config(name, base) {
       filename: _path2.default.join('js', 'bundle-[hash].min.js'),
       publicPath: ''
     },
-    plugins: [new _maha_script_plugin2.default(), new _maha_style_plugin2.default(), new _miniCssExtractPlugin2.default({
+    plugins: [new _maha_compiler_plugin2.default(name), new _miniCssExtractPlugin2.default({
       path: _path2.default.resolve('build', 'public', name),
       filename: _path2.default.join('css', 'bundle-[hash].min.css'),
       publicPath: ''
@@ -88,7 +84,13 @@ var config = function config(name, base) {
         'DATA_ASSET_HOST': JSON.stringify(process.env.DATA_ASSET_HOST),
         'ROLLBAR_CLIENT_TOKEN': JSON.stringify(process.env.ROLLBAR_CLIENT_TOKEN)
       }
-    })]
+    })],
+    resolve: {
+      alias: {
+        apps: _path2.default.resolve('apps'),
+        packages: _path2.default.resolve('packages')
+      }
+    }
   };
 };
 
