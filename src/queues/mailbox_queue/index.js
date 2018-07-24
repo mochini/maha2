@@ -1,5 +1,5 @@
 import Queue from '../../objects/queue'
-import aws from '../../services/aws'
+import aws from '../../lib/aws'
 import path from 'path'
 
 const enqueue = async (req, trx, message) => message

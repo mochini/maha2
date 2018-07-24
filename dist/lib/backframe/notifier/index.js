@@ -22,7 +22,7 @@ var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-var _notification_queue = require('../../../../queues/notification_queue');
+var _notification_queue = require('../../../queues/notification_queue');
 
 var _notification_queue2 = _interopRequireDefault(_notification_queue);
 

@@ -1,4 +1,4 @@
-import NotificationQueue from '../../../../queues/notification_queue'
+import NotificationQueue from '../../../queues/notification_queue'
 import NotificationType from '../../../models/notification_type'
 import Notification from '../../../models/notification'
 import Story from '../../../models/story'
