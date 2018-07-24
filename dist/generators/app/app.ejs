@@ -1,0 +1,15 @@
+import { App } from 'maha'
+
+const <%= _.camelCase(name) %> = new App({
+  title: '<%= app_name %>',
+  path: '',
+  app_category: '',
+  app_author: '',
+  description: '',
+  version: '1.0.0',
+  color: '',
+  icon: '',
+  weight: 10
+})
+
+export default <%= _.camelCase(name) %>

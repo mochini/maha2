@@ -4,17 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 require('../validations/greater_than_field_validation');
 
@@ -42,100 +34,122 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Model = function Model(options) {
-  (0, _classCallCheck3.default)(this, Model);
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Model = function () {
+  function Model(options) {
+    _classCallCheck(this, Model);
+
+    return _bookshelf2.default.Model.extend(_extends({
+
+      hasTimestamps: options.hasTimestamps !== false,
+
+      tableName: '',
+
+      displayName: '',
+
+      displayAttribute: '',
+
+      rules: {},
+
+      virtuals: {},
+
+      initialize: function initialize(attrs, opts) {
+
+        this.on('saving', this.validateSave);
+      },
+
+      fetch: function fetch() {
+        var fetchOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 
-  return _bookshelf2.default.Model.extend((0, _extends3.default)({
+        return _bookshelf2.default.Model.prototype.fetch.call(this, mergeOptions(fetchOptions, options));
+      },
 
-    hasTimestamps: options.hasTimestamps !== false,
-
-    tableName: '',
-
-    displayName: '',
-
-    displayAttribute: '',
-
-    rules: {},
-
-    virtuals: {},
-
-    initialize: function initialize(attrs, opts) {
-
-      this.on('saving', this.validateSave);
-    },
-
-    fetch: function fetch() {
-      var fetchOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      fetchAll: function fetchAll() {
+        var fetchOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 
-      return _bookshelf2.default.Model.prototype.fetch.call(this, mergeOptions(fetchOptions, options));
-    },
+        return _bookshelf2.default.Model.prototype.fetchAll.call(this, mergeOptions(fetchOptions, options));
+      },
 
-    fetchAll: function fetchAll() {
-      var fetchOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      validateSave: function validateSave(model, attrs, saveOptions) {
 
+        if (saveOptions.skipValidation) return true;
 
-      return _bookshelf2.default.Model.prototype.fetchAll.call(this, mergeOptions(fetchOptions, options));
-    },
+        var rules = this.belongsToTeam !== false ? _extends({}, saveOptions.withRules || this.rules, options.belongsToTeam !== false ? { team_id: 'required' } : {}) : {};
 
-    validateSave: function validateSave(model, attrs, saveOptions) {
+        return new _checkit2.default(rules).run(this.attributes, { tableName: this.tableName });
+      },
 
-      if (saveOptions.skipValidation) return true;
+      activities: function activities() {
 
-      var rules = this.belongsToTeam !== false ? (0, _extends3.default)({}, saveOptions.withRules || this.rules, options.belongsToTeam !== false ? { team_id: 'required' } : {}) : {};
+        var Activity = require('../../../models/activity').default;
 
-      return new _checkit2.default(rules).run(this.attributes, { tableName: this.tableName });
-    },
+        return this.morphMany(Activity, 'activable', ['object_table', 'object_id']);
+      },
 
-    activities: function activities() {
+      audit: function audit() {
 
-      var Activity = require('../../../models/activity').default;
+        var Audit = require('../../../models/audit').default;
 
-      return this.morphMany(Activity, 'activable', ['object_table', 'object_id']);
-    },
+        return this.morphMany(Audit, 'auditable');
+      },
 
-    audit: function audit() {
+      comments: function comments() {
 
-      var Audit = require('../../../models/audit').default;
+        var Comment = require('../../../models/comment').default;
 
-      return this.morphMany(Audit, 'auditable');
-    },
+        return this.morphMany(Comment, 'commentable');
+      },
 
-    comments: function comments() {
+      listenings: function listenings() {
 
-      var Comment = require('../../../models/comment').default;
+        var Listening = require('../../../models/listening').default;
 
-      return this.morphMany(Comment, 'commentable');
-    },
+        return this.morphMany(Listening, 'listenable');
+      },
 
-    listenings: function listenings() {
+      reviews: function reviews() {
 
-      var Listening = require('../../../models/listening').default;
+        var Review = require('../../../models/review').default;
 
-      return this.morphMany(Listening, 'listenable');
-    },
+        return this.morphMany(Review, 'reviewable');
+      },
 
-    reviews: function reviews() {
+      team: function team() {
 
-      var Review = require('../../../models/review').default;
+        var Team = require('../../../models/team').default;
 
-      return this.morphMany(Review, 'reviewable');
-    },
+        return this.belongsTo(Team, 'team_id');
+      }
 
-    team: function team() {
+    }, options));
+  }
 
-      var Team = require('../../../models/team').default;
-
-      return this.belongsTo(Team, 'team_id');
+  _createClass(Model, [{
+    key: '__reactstandin__regenerateByEval',
+    // @ts-ignore
+    value: function __reactstandin__regenerateByEval(key, code) {
+      // @ts-ignore
+      this[key] = eval(code);
     }
+  }]);
 
-  }, options));
-};
+  return Model;
+}();
 
 var mergeOptions = function mergeOptions(options, config) {
-  return (0, _extends3.default)({}, options, {
-    withRelated: [].concat((0, _toConsumableArray3.default)(coerceArray(options.withRelated)), (0, _toConsumableArray3.default)(coerceArray(config.withRelated)))
+  return _extends({}, options, {
+    withRelated: [].concat(_toConsumableArray(coerceArray(options.withRelated)), _toConsumableArray(coerceArray(config.withRelated)))
   });
 };
 
@@ -143,4 +157,24 @@ var coerceArray = function coerceArray(value) {
   return !_lodash2.default.isNil(value) ? !_lodash2.default.isArray(value) ? [value] : value : [];
 };
 
-exports.default = Model;
+var _default = Model;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Model, 'Model', 'unknown');
+  reactHotLoader.register(mergeOptions, 'mergeOptions', 'unknown');
+  reactHotLoader.register(coerceArray, 'coerceArray', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

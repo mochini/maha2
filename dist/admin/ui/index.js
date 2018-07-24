@@ -20,6 +20,12 @@ var _app2 = _interopRequireDefault(_app);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var admin = function admin(features) {
 
   var element = document.getElementById('platform');
@@ -27,4 +33,22 @@ var admin = function admin(features) {
   _reactDom2.default.render(_react2.default.createElement(_app2.default, features), element);
 };
 
-exports.default = admin;
+var _default = admin;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(admin, 'admin', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

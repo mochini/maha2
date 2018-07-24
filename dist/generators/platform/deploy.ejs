@@ -1,0 +1,29 @@
+module.exports = {
+  default: {
+    key: '',
+    repositoryUrl: '',
+    workspace: 'repo',
+    ignores: ['.git', 'node_modules'],
+    keepReleases: 2,
+  },
+  staging: {
+    servers: [
+      {
+        user: '',
+        host: '',
+        role: ''
+      }
+    ],
+    deployTo: ''
+  },
+  production: {
+    servers: [
+      {
+        user: '',
+        host: '',
+        role: ''
+      }
+    ],
+    deployTo: ''
+  }
+}

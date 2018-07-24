@@ -22,6 +22,12 @@ var _user2 = _interopRequireDefault(_user);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var Activity = new _model2.default({
 
   tableName: 'maha_activities',
@@ -46,4 +52,22 @@ var Activity = new _model2.default({
   }
 });
 
-exports.default = Activity;
+var _default = Activity;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Activity, 'Activity', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

@@ -1,0 +1,7 @@
+<% camelized = _.camelCase(name) -%>
+import { expect } from 'chai'
+import <%= camelized %>Mailbox from '../../mailboxes/<%= _.snakeCase(name) %>_mailbox'
+
+describe('<%= _.snakeCase(name) %> mailbox', () => {
+
+})

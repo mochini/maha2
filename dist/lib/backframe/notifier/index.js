@@ -4,23 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
-
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _bluebird = require('bluebird');
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _notification_queue = require('../../../queues/notification_queue');
 
@@ -58,10 +44,18 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var afterCommit = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(req, trx, result, options) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, trx, result, options) {
     var notificationCreator;
-    return _regenerator2.default.wrap(function _callee4$(_context4) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -85,9 +79,9 @@ var afterCommit = function () {
           case 5:
             _context4.next = 7;
             return options.knex.transaction(function () {
-              var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(trx) {
+              var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(trx) {
                 var notifiations;
-                return _regenerator2.default.wrap(function _callee3$(_context3) {
+                return regeneratorRuntime.wrap(function _callee3$(_context3) {
                   while (1) {
                     switch (_context3.prev = _context3.next) {
                       case 0:
@@ -97,14 +91,14 @@ var afterCommit = function () {
                       case 2:
                         notifiations = _context3.sent;
                         _context3.next = 5;
-                        return (0, _bluebird.mapSeries)(_coerceArray(notifiations), function () {
-                          var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(notification) {
+                        return Promise.mapSeries(_coerceArray(notifiations), function () {
+                          var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(notification) {
                             var data, story_id, notification_type_id;
-                            return _regenerator2.default.wrap(function _callee2$(_context2) {
+                            return regeneratorRuntime.wrap(function _callee2$(_context2) {
                               while (1) {
                                 switch (_context2.prev = _context2.next) {
                                   case 0:
-                                    data = (0, _extends3.default)({
+                                    data = _extends({
                                       team_id: req.team.get('id'),
                                       app_id: req.app ? req.app.get('id') : null,
                                       type: notification.type,
@@ -125,10 +119,10 @@ var afterCommit = function () {
                                   case 6:
                                     notification_type_id = _context2.sent;
                                     _context2.next = 9;
-                                    return (0, _bluebird.mapSeries)(data.recipient_ids, function () {
-                                      var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(user_id) {
+                                    return Promise.mapSeries(data.recipient_ids, function () {
+                                      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(user_id) {
                                         var exclusion, notificationData, notificationObject;
-                                        return _regenerator2.default.wrap(function _callee$(_context) {
+                                        return regeneratorRuntime.wrap(function _callee$(_context) {
                                           while (1) {
                                             switch (_context.prev = _context.next) {
                                               case 0:
@@ -248,10 +242,10 @@ var _getObject = function _getObject(notification) {
 };
 
 var _getNotificationType = function () {
-  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(namespaced, trx) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(namespaced, trx) {
     var parts, _parts, appCode, text, app, app_id, type;
 
-    return _regenerator2.default.wrap(function _callee5$(_context5) {
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
@@ -273,7 +267,7 @@ var _getNotificationType = function () {
             return _context5.abrupt('return', null);
 
           case 5:
-            _parts = (0, _slicedToArray3.default)(parts, 2), appCode = _parts[0], text = _parts[1];
+            _parts = _slicedToArray(parts, 2), appCode = _parts[0], text = _parts[1];
             _context5.next = 8;
             return _app2.default.query(function (qb) {
               return qb.whereRaw('LOWER(REPLACE(maha_apps.title,\' \',\'\')) = ?', appCode);
@@ -303,9 +297,9 @@ var _getNotificationType = function () {
 }();
 
 var _findOrCreateStoryId = function () {
-  var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(text, trx) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(text, trx) {
     var findStory, story;
-    return _regenerator2.default.wrap(function _callee6$(_context6) {
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
@@ -357,7 +351,7 @@ var _coerceArray = function _coerceArray(value) {
   return !_lodash2.default.isArray(value) ? [value] : value;
 };
 
-exports.default = (0, _backframe.plugin)({
+var _default = (0, _backframe.plugin)({
   name: 'notifier',
   options: {
     notification: {
@@ -367,3 +361,26 @@ exports.default = (0, _backframe.plugin)({
   },
   afterCommit: afterCommit
 });
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(afterCommit, 'afterCommit', 'unknown');
+  reactHotLoader.register(_getObject, '_getObject', 'unknown');
+  reactHotLoader.register(_getNotificationType, '_getNotificationType', 'unknown');
+  reactHotLoader.register(_findOrCreateStoryId, '_findOrCreateStoryId', 'unknown');
+  reactHotLoader.register(_coerceArray, '_coerceArray', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

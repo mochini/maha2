@@ -1,0 +1,10 @@
+<% app = _.snakeCase(app_name) -%>
+import { email } from 'maha'
+
+const <%= _.camelCase(name) %>Email = email({
+  code: '<%= app %>.<%= _.camelCase(name) %>',
+  name: '<%= _.camelCase(name) %>',
+  subject: '<%= _.camelCase(name) %>'
+})
+
+export default <%= _.camelCase(name) %>Email

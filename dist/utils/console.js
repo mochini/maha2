@@ -15,6 +15,12 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var info = exports.info = function info(entity, message) {
   return log('i', 'blue', entity, message);
 };
@@ -48,3 +54,24 @@ var write = exports.write = function write(items) {
 
   process.stdout.write('\n');
 };
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(info, 'info', 'unknown');
+  reactHotLoader.register(error, 'error', 'unknown');
+  reactHotLoader.register(success, 'success', 'unknown');
+  reactHotLoader.register(log, 'log', 'unknown');
+  reactHotLoader.register(action, 'action', 'unknown');
+  reactHotLoader.register(write, 'write', 'unknown');
+  leaveModule(module);
+})();
+
+;

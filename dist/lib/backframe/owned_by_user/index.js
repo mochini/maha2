@@ -4,13 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
 var _backframe = require('backframe');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var defaultQuery = function defaultQuery(req, trx, qb, options) {
 
@@ -29,10 +31,10 @@ var defaultParams = function defaultParams(req, trx, options) {
 
   var foreignKey = options.ownedByUserForeignKey || 'user_id';
 
-  return (0, _defineProperty3.default)({}, foreignKey, req.user.get('id'));
+  return _defineProperty({}, foreignKey, req.user.get('id'));
 };
 
-exports.default = (0, _backframe.plugin)({
+var _default = (0, _backframe.plugin)({
   name: 'ownedByUser',
   options: {
     ownedByUser: {
@@ -47,3 +49,23 @@ exports.default = (0, _backframe.plugin)({
   defaultParams: defaultParams,
   defaultQuery: defaultQuery
 });
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(defaultQuery, 'defaultQuery', 'unknown');
+  reactHotLoader.register(defaultParams, 'defaultParams', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

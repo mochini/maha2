@@ -1,0 +1,13 @@
+import { Factory } from 'redux-rubberstamp'
+import reducer from './reducer'
+import <%= _.camelCase(name) %> from './<%= _.snakeCase(name) %>'
+import * as actions from './actions'
+import * as selectors from './selectors'
+
+export default Factory({
+  namespace: '<%= _.snakeCase(app_name) %>.<%= _.snakeCase(path) %>',
+  component: <%= _.camelCase(name) %>,
+  reducer,
+  actions,
+  selectors
+})

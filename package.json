@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "babel ./src --out-dir ./dist.staged && rm -rf ./dist && mv ./dist.staged ./dist"
+    "build": "babel-node ./src/build.js"
   },
   "author": "",
   "license": "ISC",

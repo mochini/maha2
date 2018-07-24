@@ -1,0 +1,18 @@
+<% capitalized = _.upperFirst(_.camelCase(name)) -%>
+import { Queue } from 'maha'
+
+const <%= capitalized %>Queue = new Queue({
+
+  name: '<%= _.snakeCase(name) %>',
+
+  enqueue: async (req, trx, options) => {
+
+  },
+
+  processor: async (job, trx) => {
+
+  }
+
+})
+
+export default <%= capitalized %>Queue

@@ -5,16 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.migrateRedo = exports.seedsLoad = exports.fixturesLoad = exports.migrateDown = exports.migrateUp = undefined;
 
-var _bluebird = require('bluebird');
-
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
 require('../../lib/environment');
 
 var _collect_objects = require('../../utils/collect_objects');
@@ -39,6 +29,14 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var migrateUp = exports.migrateUp = function migrateUp(flags, args) {
   return _migrate('up');
 };
@@ -56,8 +54,8 @@ var seedsLoad = exports.seedsLoad = function seedsLoad(flags, args) {
 };
 
 var migrateRedo = exports.migrateRedo = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(flags, args) {
-    return _regenerator2.default.wrap(function _callee$(_context) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(flags, args) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -82,27 +80,27 @@ var migrateRedo = exports.migrateRedo = function () {
 }();
 
 var _loadData = function () {
-  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(type) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(type) {
     var files;
-    return _regenerator2.default.wrap(function _callee5$(_context5) {
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
             files = _getSortedFiles(type);
             _context5.next = 3;
-            return (0, _bluebird.mapSeries)(files, function () {
-              var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(file) {
+            return Promise.mapSeries(files, function () {
+              var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(file) {
                 var fixture;
-                return _regenerator2.default.wrap(function _callee4$(_context4) {
+                return regeneratorRuntime.wrap(function _callee4$(_context4) {
                   while (1) {
                     switch (_context4.prev = _context4.next) {
                       case 0:
                         fixture = require(_path2.default.resolve(file.path)).default;
                         _context4.next = 3;
                         return _knex2.default.transaction(function () {
-                          var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(trx) {
+                          var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(trx) {
                             var chunks, idColumn;
-                            return _regenerator2.default.wrap(function _callee3$(_context3) {
+                            return regeneratorRuntime.wrap(function _callee3$(_context3) {
                               while (1) {
                                 switch (_context3.prev = _context3.next) {
                                   case 0:
@@ -116,9 +114,9 @@ var _loadData = function () {
                                   case 4:
                                     chunks = _lodash2.default.chunk(fixture.records, 50);
                                     _context3.next = 7;
-                                    return (0, _bluebird.mapSeries)(chunks, function () {
-                                      var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(chunk) {
-                                        return _regenerator2.default.wrap(function _callee2$(_context2) {
+                                    return Promise.mapSeries(chunks, function () {
+                                      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(chunk) {
+                                        return regeneratorRuntime.wrap(function _callee2$(_context2) {
                                           while (1) {
                                             switch (_context2.prev = _context2.next) {
                                               case 0:
@@ -213,9 +211,9 @@ var _loadData = function () {
 }();
 
 var _migrate = function () {
-  var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(direction) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(direction) {
     var allMigrations, migrations;
-    return _regenerator2.default.wrap(function _callee6$(_context6) {
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
@@ -259,9 +257,9 @@ var _migrate = function () {
 }();
 
 var _findOrCreateSchema = function () {
-  var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7() {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
     var exists;
-    return _regenerator2.default.wrap(function _callee7$(_context7) {
+    return regeneratorRuntime.wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
@@ -326,17 +324,17 @@ var _getSortedFiles = function _getSortedFiles(targetPath) {
 };
 
 var _filterScripts = function () {
-  var _ref8 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee9(scripts, down) {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(scripts, down) {
     var sorted;
-    return _regenerator2.default.wrap(function _callee9$(_context9) {
+    return regeneratorRuntime.wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
           case 0:
             sorted = down ? scripts.reverse() : scripts;
             _context9.next = 3;
-            return (0, _bluebird.filter)(sorted, function () {
-              var _ref9 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee8(script) {
-                return _regenerator2.default.wrap(function _callee8$(_context8) {
+            return Promise.filter(sorted, function () {
+              var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(script) {
+                return regeneratorRuntime.wrap(function _callee8$(_context8) {
                   while (1) {
                     switch (_context8.prev = _context8.next) {
                       case 0:
@@ -378,9 +376,9 @@ var _filterScripts = function () {
 }();
 
 var _hasScriptBeenRun = function () {
-  var _ref10 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee10(migration, run) {
+  var _ref10 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(migration, run) {
     var result;
-    return _regenerator2.default.wrap(function _callee10$(_context10) {
+    return regeneratorRuntime.wrap(function _callee10$(_context10) {
       while (1) {
         switch (_context10.prev = _context10.next) {
           case 0:
@@ -406,18 +404,18 @@ var _hasScriptBeenRun = function () {
 
 var _runMigrations = function _runMigrations(migrations, direction) {
 
-  return (0, _bluebird.mapSeries)(migrations, function () {
-    var _ref11 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee12(migration) {
-      return _regenerator2.default.wrap(function _callee12$(_context12) {
+  return Promise.mapSeries(migrations, function () {
+    var _ref11 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(migration) {
+      return regeneratorRuntime.wrap(function _callee12$(_context12) {
         while (1) {
           switch (_context12.prev = _context12.next) {
             case 0:
               _context12.next = 2;
               return _knex2.default.transaction(function () {
-                var _ref12 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee11(trx) {
+                var _ref12 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(trx) {
                   var runner, _logMigration;
 
-                  return _regenerator2.default.wrap(function _callee11$(_context11) {
+                  return regeneratorRuntime.wrap(function _callee11$(_context11) {
                     while (1) {
                       switch (_context11.prev = _context11.next) {
                         case 0:
@@ -471,8 +469,8 @@ var _removeMigration = function _removeMigration(migration, trx) {
 };
 
 var _dropSchema = function () {
-  var _ref13 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee13() {
-    return _regenerator2.default.wrap(function _callee13$(_context13) {
+  var _ref13 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
+    return regeneratorRuntime.wrap(function _callee13$(_context13) {
       while (1) {
         switch (_context13.prev = _context13.next) {
           case 0:
@@ -494,3 +492,33 @@ var _dropSchema = function () {
     return _ref13.apply(this, arguments);
   };
 }();
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(migrateUp, 'migrateUp', 'unknown');
+  reactHotLoader.register(migrateDown, 'migrateDown', 'unknown');
+  reactHotLoader.register(fixturesLoad, 'fixturesLoad', 'unknown');
+  reactHotLoader.register(seedsLoad, 'seedsLoad', 'unknown');
+  reactHotLoader.register(migrateRedo, 'migrateRedo', 'unknown');
+  reactHotLoader.register(_loadData, '_loadData', 'unknown');
+  reactHotLoader.register(_migrate, '_migrate', 'unknown');
+  reactHotLoader.register(_findOrCreateSchema, '_findOrCreateSchema', 'unknown');
+  reactHotLoader.register(_getSortedFiles, '_getSortedFiles', 'unknown');
+  reactHotLoader.register(_filterScripts, '_filterScripts', 'unknown');
+  reactHotLoader.register(_hasScriptBeenRun, '_hasScriptBeenRun', 'unknown');
+  reactHotLoader.register(_runMigrations, '_runMigrations', 'unknown');
+  reactHotLoader.register(_recordMigration, '_recordMigration', 'unknown');
+  reactHotLoader.register(_removeMigration, '_removeMigration', 'unknown');
+  reactHotLoader.register(_dropSchema, '_dropSchema', 'unknown');
+  leaveModule(module);
+})();
+
+;

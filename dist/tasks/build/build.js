@@ -5,22 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.build = undefined;
 
-var _bluebird = require('bluebird');
-
-var _bluebird2 = _interopRequireDefault(_bluebird);
-
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
 var _console = require('../../utils/console');
 
 var _babelCore = require('babel-core');
@@ -28,10 +12,6 @@ var _babelCore = require('babel-core');
 var _webpack = require('./webpack.config');
 
 var _webpack2 = _interopRequireDefault(_webpack);
-
-var _moveConcurrently = require('move-concurrently');
-
-var _moveConcurrently2 = _interopRequireDefault(_moveConcurrently);
 
 var _webpack3 = require('webpack');
 
@@ -59,7 +39,15 @@ var _fs2 = _interopRequireDefault(_fs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var root = _path2.default.resolve(__dirname, '..', '..', 'admin');
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var getItemType = function getItemType(item) {
   return item.match(/([^.]*)\.?(.*)?/)[2] || 'dir';
@@ -73,12 +61,12 @@ var getItem = function getItem(src, root, item) {
 };
 
 var listContents = function listContents(src, root, item) {
-  return [getItem(src, root, item)].concat((0, _toConsumableArray3.default)(_fs2.default.lstatSync(src).isDirectory() ? listItems(src) : []));
+  return [getItem(src, root, item)].concat(_toConsumableArray(_fs2.default.lstatSync(src).isDirectory() ? listItems(src) : []));
 };
 
 var listItems = function listItems(root) {
   return _fs2.default.readdirSync(root).reduce(function (items, item) {
-    return [].concat((0, _toConsumableArray3.default)(items), (0, _toConsumableArray3.default)(listContents(_path2.default.join(root, item), root, item)));
+    return [].concat(_toConsumableArray(items), _toConsumableArray(listContents(_path2.default.join(root, item), root, item)));
   }, []);
 };
 
@@ -107,13 +95,13 @@ var copy = function copy(src, dest) {
 
   (0, _console.action)('copy', src);
 
-  return (0, _bluebird.promisify)(_ncp2.default)(src, dest);
+  return Promise.promisify(_ncp2.default)(src, dest);
 };
 
 var buildItem = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(item, srcPath, destPath) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(item, srcPath, destPath) {
     var dest;
-    return _regenerator2.default.wrap(function _callee$(_context) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -155,8 +143,8 @@ var buildItem = function () {
 }();
 
 var removeBuild = function () {
-  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(dest) {
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dest) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -176,19 +164,19 @@ var removeBuild = function () {
 }();
 
 var copyAssets = function copyAssets(src, dest) {
-  return (0, _bluebird.promisify)(_ncp2.default)(src, dest);
+  return Promise.promisify(_ncp2.default)(src, dest);
 };
 
 var buildItems = function () {
-  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(srcPath, destPath) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(srcPath, destPath) {
     var items;
-    return _regenerator2.default.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             items = listItems(srcPath);
             _context3.next = 3;
-            return (0, _bluebird.mapSeries)(items, function (item) {
+            return Promise.mapSeries(items, function (item) {
               return buildItem(item, srcPath, destPath);
             });
 
@@ -206,7 +194,7 @@ var buildItems = function () {
 }();
 
 var compile = function compile(name, base) {
-  return new _bluebird2.default(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
 
     (0, _webpack4.default)((0, _webpack2.default)(name, base)).run(function (err, stats) {
 
@@ -218,8 +206,8 @@ var compile = function compile(name, base) {
 };
 
 var buildPublic = function () {
-  var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(name, base) {
-    return _regenerator2.default.wrap(function _callee4$(_context4) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(name, base) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -248,8 +236,8 @@ var buildPublic = function () {
 }();
 
 var build = exports.build = function () {
-  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(flags, args) {
-    return _regenerator2.default.wrap(function _callee6$(_context6) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(flags, args) {
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
@@ -270,9 +258,9 @@ var build = exports.build = function () {
 
           case 8:
             _context6.next = 10;
-            return (0, _bluebird.map)(_fs2.default.readdirSync(_path2.default.join('apps')), function () {
-              var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(app, index) {
-                return _regenerator2.default.wrap(function _callee5$(_context5) {
+            return Promise.map(_fs2.default.readdirSync(_path2.default.join('apps')), function () {
+              var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(app, index) {
+                return regeneratorRuntime.wrap(function _callee5$(_context5) {
                   while (1) {
                     switch (_context5.prev = _context5.next) {
                       case 0:
@@ -304,3 +292,32 @@ var build = exports.build = function () {
     return _ref5.apply(this, arguments);
   };
 }();
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(getItemType, 'getItemType', 'unknown');
+  reactHotLoader.register(getItem, 'getItem', 'unknown');
+  reactHotLoader.register(listContents, 'listContents', 'unknown');
+  reactHotLoader.register(listItems, 'listItems', 'unknown');
+  reactHotLoader.register(transpile, 'transpile', 'unknown');
+  reactHotLoader.register(mkdir, 'mkdir', 'unknown');
+  reactHotLoader.register(copy, 'copy', 'unknown');
+  reactHotLoader.register(buildItem, 'buildItem', 'unknown');
+  reactHotLoader.register(removeBuild, 'removeBuild', 'unknown');
+  reactHotLoader.register(copyAssets, 'copyAssets', 'unknown');
+  reactHotLoader.register(buildItems, 'buildItems', 'unknown');
+  reactHotLoader.register(compile, 'compile', 'unknown');
+  reactHotLoader.register(buildPublic, 'buildPublic', 'unknown');
+  reactHotLoader.register(build, 'build', 'unknown');
+  leaveModule(module);
+})();
+
+;

@@ -5,25 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.find_route = exports.make_authenticated_request = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _extends3 = require('babel-runtime/helpers/extends');
-
-var _extends4 = _interopRequireDefault(_extends3);
-
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _bluebird = require('bluebird');
-
-var _bluebird2 = _interopRequireDefault(_bluebird);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _lodash = require('lodash');
 
@@ -37,10 +19,20 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var make_authenticated_request = exports.make_authenticated_request = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(router, request) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(router, request) {
     var route, token, req;
-    return _regenerator2.default.wrap(function _callee$(_context) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -59,7 +51,7 @@ var make_authenticated_request = exports.make_authenticated_request = function (
               }
             };
             _context.next = 7;
-            return new _bluebird2.default(function (resolve, reject) {
+            return new Promise(function (resolve, reject) {
 
               var res = {
                 status: function status(_status) {
@@ -91,9 +83,9 @@ var make_authenticated_request = exports.make_authenticated_request = function (
 }();
 
 var find_route = exports.find_route = function () {
-  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(router, method, path) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(router, method, path) {
     var resolvedRouter;
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -113,7 +105,7 @@ var find_route = exports.find_route = function () {
               if (matched && _lodash2.default.get(route, 'route.methods.' + method)) {
 
                 var params = route.keys.reduce(function (params, key, index) {
-                  return (0, _extends4.default)({}, params, (0, _defineProperty3.default)({}, key.name, matched[index + 1]));
+                  return _extends({}, params, _defineProperty({}, key.name, matched[index + 1]));
                 }, {});
 
                 return {
@@ -135,3 +127,20 @@ var find_route = exports.find_route = function () {
     return _ref2.apply(this, arguments);
   };
 }();
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(make_authenticated_request, 'make_authenticated_request', 'unknown');
+  reactHotLoader.register(find_route, 'find_route', 'unknown');
+  leaveModule(module);
+})();
+
+;

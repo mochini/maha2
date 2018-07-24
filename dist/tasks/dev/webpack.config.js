@@ -1,49 +1,34 @@
-'use strict';
+import MahaCompilerPlugin from '../../lib/webpack/maha_compiler_plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
+import webpack from 'webpack'
+import path from 'path'
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _maha_compiler_plugin = require('../../lib/webpack/maha_compiler_plugin');
-
-var _maha_compiler_plugin2 = _interopRequireDefault(_maha_compiler_plugin);
-
-var _htmlWebpackPlugin = require('html-webpack-plugin');
-
-var _htmlWebpackPlugin2 = _interopRequireDefault(_htmlWebpackPlugin);
-
-var _autoprefixer = require('autoprefixer');
-
-var _autoprefixer2 = _interopRequireDefault(_autoprefixer);
-
-var _cssnano = require('cssnano');
-
-var _cssnano2 = _interopRequireDefault(_cssnano);
-
-var _webpack = require('webpack');
-
-var _webpack2 = _interopRequireDefault(_webpack);
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var config = function config(name, base, port) {
-  return {
-    devtool: 'source-map',
-    entry: ['webpack-dev-server/client?http://localhost:' + port, 'webpack/hot/only-dev-server', _path2.default.resolve('build', name + '.js'), _path2.default.resolve('build', name + '.less')],
-    module: {
-      rules: [{
+const config = (name, base, port) => ({
+  devtool: 'source-map',
+  entry: [
+    `webpack-dev-server/client?http://localhost:${port}`,
+    'webpack/hot/only-dev-server',
+    path.resolve('build', `${name}.js`),
+    path.resolve('build', `${name}.less`)
+  ],
+  module: {
+    rules: [
+      {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader?url=false', {
-          loader: 'postcss-loader',
-          options: {
-            plugins: [_autoprefixer2.default, _cssnano2.default]
-          }
-        }, 'less-loader']
+        use: [
+          'style-loader',
+          'css-loader?url=false',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [autoprefixer, cssnano]
+            }
+          },
+          'less-loader'
+        ]
       }, {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -53,15 +38,20 @@ var config = function config(name, base, port) {
           plugins: ['react-hot-loader/babel'],
           presets: ['es2015', 'react', 'stage-0']
         }
-      }]
-    },
-    mode: 'development',
-    output: {
-      filename: 'application.js'
-    },
-    plugins: [new _maha_compiler_plugin2.default(name), new _webpack2.default.HotModuleReplacementPlugin(), new _htmlWebpackPlugin2.default({
-      template: _path2.default.join(base, 'ui', 'index.html')
-    }), new _webpack2.default.DefinePlugin({
+      }
+    ]
+  },
+  mode: 'development',
+  output: {
+    filename: 'application.js'
+  },
+  plugins: [
+    new MahaCompilerPlugin(name),
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.join(base, 'ui', 'index.html')
+    }),
+    new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         'DOMAIN': JSON.stringify(process.env.DOMAIN || 'localhost'),
@@ -74,14 +64,14 @@ var config = function config(name, base, port) {
         'DATA_ASSET_HOST': JSON.stringify(process.env.DATA_ASSET_HOST),
         'ROLLBAR_CLIENT_TOKEN': JSON.stringify(process.env.ROLLBAR_CLIENT_TOKEN)
       }
-    })],
-    resolve: {
-      alias: {
-        apps: _path2.default.resolve('apps'),
-        packages: _path2.default.resolve('packages')
-      }
+    })
+  ],
+  resolve: {
+    alias: {
+      apps: path.resolve('apps'),
+      packages: path.resolve('packages')
     }
-  };
-};
+  }
+})
 
-exports.default = config;
+export default config

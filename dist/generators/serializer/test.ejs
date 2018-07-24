@@ -1,0 +1,7 @@
+<% capitalized = _.upperFirst(_.camelCase(name)) -%>
+import { expect } from 'chai'
+import <%= capitalized %>Serializer from '../../serializers/<%= _.snakeCase(name) %>_serializer'
+
+describe('<%= _.snakeCase(name) %> serializer', () => {
+
+})

@@ -22,6 +22,12 @@ var _strategy2 = _interopRequireDefault(_strategy);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var Team = new _model2.default({
 
   tableName: 'maha_teams',
@@ -50,4 +56,22 @@ var Team = new _model2.default({
   }
 });
 
-exports.default = Team;
+var _default = Team;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Team, 'Team', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

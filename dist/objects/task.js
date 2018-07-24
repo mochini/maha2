@@ -4,19 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends2 = require("babel-runtime/helpers/extends");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _extends3 = _interopRequireDefault(_extends2);
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
 
-var _regenerator = require("babel-runtime/regenerator");
+  enterModule && enterModule(module);
+})();
 
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require("babel-runtime/helpers/asyncToGenerator");
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 // import { writePaddedLine } from '../../utils/console'
 // import Rollbar from '../../services/rollbar'
@@ -28,10 +24,10 @@ var task = function task(args) {
   var options = normalize(args);
 
   var action = function () {
-    var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
       var source,
           _args = arguments;
-      return _regenerator2.default.wrap(function _callee$(_context) {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -72,7 +68,7 @@ var task = function task(args) {
 };
 
 var normalize = function normalize(options) {
-  return (0, _extends3.default)({
+  return _extends({
     exit: true
   }, options);
 };
@@ -119,4 +115,23 @@ var normalize = function normalize(options) {
 //
 // }
 
-exports.default = task;
+var _default = task;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(task, "task", "unknown");
+  reactHotLoader.register(normalize, "normalize", "unknown");
+  reactHotLoader.register(_default, "default", "unknown");
+  leaveModule(module);
+})();
+
+;

@@ -6,6 +6,12 @@ Object.defineProperty(exports, "__esModule", {
 
 var _backframe = require('backframe');
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var defaultQuery = function defaultQuery(req, trx, qb, options) {
 
   if (!options.ownedByTeam || !options.model) return;
@@ -24,7 +30,7 @@ var defaultParams = function defaultParams(req, trx, options) {
   };
 };
 
-exports.default = (0, _backframe.plugin)({
+var _default = (0, _backframe.plugin)({
   name: 'ownedByTeam',
   options: {
     ownedByTeam: {
@@ -35,3 +41,23 @@ exports.default = (0, _backframe.plugin)({
   defaultParams: defaultParams,
   defaultQuery: defaultQuery
 });
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(defaultQuery, 'defaultQuery', 'unknown');
+  reactHotLoader.register(defaultParams, 'defaultParams', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

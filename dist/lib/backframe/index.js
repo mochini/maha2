@@ -58,8 +58,32 @@ var _notifier2 = _interopRequireDefault(_notifier);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = (0, _backframe2.default)({
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = (0, _backframe2.default)({
   knex: _knex2.default,
   redis: _redis2.default,
   plugins: [_authenticator2.default, _authorizer2.default, _app2.default, _owned_by_team2.default, _owned_by_user2.default, _listeners2.default, _activities2.default, _auditor2.default, _emitter2.default, _notifier2.default]
 });
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

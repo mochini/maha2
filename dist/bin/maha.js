@@ -1,14 +1,6 @@
 #!/usr/bin/env babel-node
 'use strict';
 
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
 var _babelRegister = require('babel-register');
 
 var _babelRegister2 = _interopRequireDefault(_babelRegister);
@@ -25,7 +17,16 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 // import '../lib/environment'
+
+
 (0, _babelRegister2.default)({
   presets: ['es2015', 'react', 'stage-0'],
   plugins: ['transform-promise-to-bluebird', ['transform-runtime', { polyfill: false }]]
@@ -44,9 +45,9 @@ var parse = function parse(args) {
 };
 
 var execute = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(argv) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(argv) {
     var parsed;
-    return _regenerator2.default.wrap(function _callee$(_context) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -77,3 +78,20 @@ var execute = function () {
 }();
 
 execute(process.argv.slice(2));
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(parse, 'parse', 'unknown');
+  reactHotLoader.register(execute, 'execute', 'unknown');
+  leaveModule(module);
+})();
+
+;

@@ -10,6 +10,12 @@ var _serializer2 = _interopRequireDefault(_serializer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var assetSerializer = (0, _serializer2.default)(function (req, trx, result) {
   return {
 
@@ -61,4 +67,23 @@ var user = function user(_user, key) {
   };
 };
 
-exports.default = assetSerializer;
+var _default = assetSerializer;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(assetSerializer, 'assetSerializer', 'unknown');
+  reactHotLoader.register(user, 'user', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

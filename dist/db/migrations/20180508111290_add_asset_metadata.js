@@ -4,16 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _bluebird = require('bluebird');
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
 var _migration = require('../../objects/migration');
 
 var _migration2 = _interopRequireDefault(_migration);
@@ -28,12 +18,20 @@ var _asset2 = _interopRequireDefault(_asset);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var AddAssetMetadata = new _migration2.default({
 
   up: function () {
-    var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(knex) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(knex) {
       var map, profiles, assets, getUserId;
-      return _regenerator2.default.wrap(function _callee4$(_context4) {
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
@@ -69,9 +67,9 @@ var AddAssetMetadata = new _migration2.default({
             case 9:
               profiles = _context4.sent;
               _context4.next = 12;
-              return (0, _bluebird.mapSeries)(profiles.toArray(), function () {
-                var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(profile) {
-                  return _regenerator2.default.wrap(function _callee$(_context) {
+              return Promise.mapSeries(profiles.toArray(), function () {
+                var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(profile) {
+                  return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                       switch (_context.prev = _context.next) {
                         case 0:
@@ -116,9 +114,9 @@ var AddAssetMetadata = new _migration2.default({
               assets = _context4.sent;
 
               getUserId = function () {
-                var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(asset) {
+                var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(asset) {
                   var asset_id, receipt, expense, reimbursement, check, user, version;
-                  return _regenerator2.default.wrap(function _callee2$(_context2) {
+                  return regeneratorRuntime.wrap(function _callee2$(_context2) {
                     while (1) {
                       switch (_context2.prev = _context2.next) {
                         case 0:
@@ -244,10 +242,10 @@ var AddAssetMetadata = new _migration2.default({
               }();
 
               _context4.next = 22;
-              return (0, _bluebird.mapSeries)(assets.toArray(), function () {
-                var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(asset) {
+              return Promise.mapSeries(assets.toArray(), function () {
+                var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(asset) {
                   var user_id;
-                  return _regenerator2.default.wrap(function _callee3$(_context3) {
+                  return regeneratorRuntime.wrap(function _callee3$(_context3) {
                     while (1) {
                       switch (_context3.prev = _context3.next) {
                         case 0:
@@ -296,8 +294,8 @@ var AddAssetMetadata = new _migration2.default({
   }(),
 
   down: function () {
-    var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(knex) {
-      return _regenerator2.default.wrap(function _callee5$(_context5) {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(knex) {
+      return regeneratorRuntime.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
@@ -322,4 +320,22 @@ var AddAssetMetadata = new _migration2.default({
 
 });
 
-exports.default = AddAssetMetadata;
+var _default = AddAssetMetadata;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(AddAssetMetadata, 'AddAssetMetadata', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

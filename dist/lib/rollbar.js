@@ -10,6 +10,12 @@ var _rollbar2 = _interopRequireDefault(_rollbar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var rollbarCreator = function rollbarCreator(env) {
 
   if (env === 'production') {
@@ -34,4 +40,23 @@ var rollbarCreator = function rollbarCreator(env) {
 
 var rollbar = rollbarCreator(process.env.NODE_ENV);
 
-exports.default = rollbar;
+var _default = rollbar;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(rollbarCreator, 'rollbarCreator', 'unknown');
+  reactHotLoader.register(rollbar, 'rollbar', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

@@ -4,16 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _bluebird = require('bluebird');
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
 var _listening = require('../../../models/listening');
 
 var _listening2 = _interopRequireDefault(_listening);
@@ -26,13 +16,21 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 // options.listeners is a function that returns a list of user_ids who are listening to activity
 // on this item. If the listener doesnt already exists, we add them to the list
 
 var afterProcessor = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(req, trx, result, options) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, trx, result, options) {
     var listenerCreator, listener_ids, team_id, listenable_type, listenable_id, active_listeners, active_listener_ids;
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -80,10 +78,10 @@ var afterProcessor = function () {
               return listener.get('user_id');
             });
             _context2.next = 19;
-            return (0, _bluebird.mapSeries)(listener_ids, function () {
-              var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(user_id) {
+            return Promise.mapSeries(listener_ids, function () {
+              var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(user_id) {
                 var data;
-                return _regenerator2.default.wrap(function _callee$(_context) {
+                return regeneratorRuntime.wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
@@ -137,7 +135,7 @@ var _getListener = function _getListener(options) {
   return _lodash2.default.isPlainObject(options.listeners) ? options.listeners[options.action] : false;
 };
 
-exports.default = (0, _backframe.plugin)({
+var _default = (0, _backframe.plugin)({
   name: 'listeners',
   options: {
     listeners: {
@@ -147,3 +145,23 @@ exports.default = (0, _backframe.plugin)({
   },
   afterProcessor: afterProcessor
 });
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(afterProcessor, 'afterProcessor', 'unknown');
+  reactHotLoader.register(_getListener, '_getListener', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

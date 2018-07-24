@@ -14,6 +14,12 @@ var _email_link2 = _interopRequireDefault(_email_link);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var EmailActivity = new _model2.default({
 
   tableName: 'maha_email_activities',
@@ -25,4 +31,22 @@ var EmailActivity = new _model2.default({
   }
 });
 
-exports.default = EmailActivity;
+var _default = EmailActivity;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(EmailActivity, 'EmailActivity', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

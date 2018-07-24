@@ -4,23 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
-var _bluebird = require('bluebird');
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _user_tokens = require('../core/utils/user_tokens');
 
@@ -46,14 +30,24 @@ var _moment2 = _interopRequireDefault(_moment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var navigation = (0, _load_navigation2.default)();
 
 var _expandNavigation = function _expandNavigation(items, req) {
 
-  return (0, _bluebird.reduce)(items, function () {
-    var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(items, item) {
+  return Promise.reduce(items, function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(items, item) {
       var canAccess, subitems;
-      return _regenerator2.default.wrap(function _callee$(_context) {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -102,7 +96,7 @@ var _expandNavigation = function _expandNavigation(items, req) {
 
             case 17:
               subitems = _context.t1;
-              return _context.abrupt('return', [].concat((0, _toConsumableArray3.default)(items), [(0, _extends3.default)({
+              return _context.abrupt('return', [].concat(_toConsumableArray(items), [_extends({
                 label: item.label
               }, subitems.length > 0 ? { items: subitems } : {}, {
                 route: item.route,
@@ -124,9 +118,9 @@ var _expandNavigation = function _expandNavigation(items, req) {
 };
 
 var SessionSerializer = function () {
-  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, trx, user) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, trx, user) {
     var access, apps, orderApps, notifications, token, team_id, users, online;
-    return _regenerator2.default.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -143,10 +137,10 @@ var SessionSerializer = function () {
           case 5:
             access = _context3.sent;
             _context3.next = 8;
-            return (0, _bluebird.reduce)(Object.keys(access.apps), function () {
-              var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(apps, key) {
+            return Promise.reduce(Object.keys(access.apps), function () {
+              var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(apps, key) {
                 var app, items;
-                return _regenerator2.default.wrap(function _callee2$(_context2) {
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
                   while (1) {
                     switch (_context2.prev = _context2.next) {
                       case 0:
@@ -165,7 +159,7 @@ var SessionSerializer = function () {
                           break;
                         }
 
-                        return _context2.abrupt('return', [].concat((0, _toConsumableArray3.default)(apps), [app]));
+                        return _context2.abrupt('return', [].concat(_toConsumableArray(apps), [app]));
 
                       case 5:
                         _context2.next = 7;
@@ -173,7 +167,7 @@ var SessionSerializer = function () {
 
                       case 7:
                         items = _context2.sent;
-                        return _context2.abrupt('return', [].concat((0, _toConsumableArray3.default)(apps), [(0, _extends3.default)({}, app, {
+                        return _context2.abrupt('return', [].concat(_toConsumableArray(apps), [_extends({}, app, {
                           items: items
                         })]));
 
@@ -256,4 +250,24 @@ var SessionSerializer = function () {
   };
 }();
 
-exports.default = SessionSerializer;
+var _default = SessionSerializer;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(navigation, 'navigation', 'unknown');
+  reactHotLoader.register(_expandNavigation, '_expandNavigation', 'unknown');
+  reactHotLoader.register(SessionSerializer, 'SessionSerializer', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

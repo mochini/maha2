@@ -1,0 +1,14 @@
+<% capitalized = _.upperFirst(_.camelCase(name)) -%>
+import { serializer } from 'maha'
+
+const <%= capitalized %>Serializer = serializer((req, trx, result) => ({
+
+  id: result.get('id'),
+
+  created_at: result.get('created_at'),
+
+  updated_at: result.get('updated_at')
+
+}))
+
+export default <%= capitalized %>Serializer

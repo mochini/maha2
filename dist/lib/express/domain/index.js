@@ -5,23 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.publicDomainMiddleware = exports.adminDomainMiddleware = undefined;
 
-var _bluebird = require('bluebird');
-
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
-
-var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _collect_objects = require('../../../utils/collect_objects');
 
@@ -37,12 +21,22 @@ var _os2 = _interopRequireDefault(_os);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var files = (0, _collect_objects2.default)('public/domains.js');
 
 var ifaces = _os2.default.networkInterfaces();
 
 var ips = Object.keys(ifaces).reduce(function (ips, iface) {
-  return [].concat((0, _toConsumableArray3.default)(ips), (0, _toConsumableArray3.default)(ifaces[iface].map(function (adapter) {
+  return [].concat(_toConsumableArray(ips), _toConsumableArray(ifaces[iface].map(function (adapter) {
     return adapter.address;
   })));
 }, []);
@@ -51,10 +45,10 @@ var domain_regex = /^([\w-.]*):?(\d*)?$/;
 
 var adminDomainMiddleware = exports.adminDomainMiddleware = function adminDomainMiddleware(middleware) {
   return function () {
-    var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(req, res, next) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
       var _req$headers$host$mat, _req$headers$host$mat2, hostname;
 
-      return _regenerator2.default.wrap(function _callee$(_context) {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -66,9 +60,9 @@ var adminDomainMiddleware = exports.adminDomainMiddleware = function adminDomain
               return _context.abrupt('return', next());
 
             case 2:
-              _req$headers$host$mat = req.headers.host.match(domain_regex), _req$headers$host$mat2 = (0, _slicedToArray3.default)(_req$headers$host$mat, 2), hostname = _req$headers$host$mat2[1];
+              _req$headers$host$mat = req.headers.host.match(domain_regex), _req$headers$host$mat2 = _slicedToArray(_req$headers$host$mat, 2), hostname = _req$headers$host$mat2[1];
 
-              if (_lodash2.default.includes([process.env.DOMAIN, 'localhost', 'dev.mahaplatform.com'].concat((0, _toConsumableArray3.default)(ips)), hostname)) {
+              if (_lodash2.default.includes([process.env.DOMAIN, 'localhost', 'dev.mahaplatform.com'].concat(_toConsumableArray(ips)), hostname)) {
                 _context.next = 5;
                 break;
               }
@@ -95,18 +89,18 @@ var adminDomainMiddleware = exports.adminDomainMiddleware = function adminDomain
 
 var publicDomainMiddleware = exports.publicDomainMiddleware = function publicDomainMiddleware(middleware) {
   return function () {
-    var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res, next) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res, next) {
       var domains, _req$headers$host$mat3, _req$headers$host$mat4, hostname;
 
-      return _regenerator2.default.wrap(function _callee3$(_context3) {
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return (0, _bluebird.reduce)(files, function () {
-                var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(domains, domain) {
+              return Promise.reduce(files, function () {
+                var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(domains, domain) {
                   var appDomains;
-                  return _regenerator2.default.wrap(function _callee2$(_context2) {
+                  return regeneratorRuntime.wrap(function _callee2$(_context2) {
                     while (1) {
                       switch (_context2.prev = _context2.next) {
                         case 0:
@@ -115,7 +109,7 @@ var publicDomainMiddleware = exports.publicDomainMiddleware = function publicDom
 
                         case 2:
                           appDomains = _context2.sent;
-                          return _context2.abrupt('return', [].concat((0, _toConsumableArray3.default)(domains), (0, _toConsumableArray3.default)(appDomains)));
+                          return _context2.abrupt('return', [].concat(_toConsumableArray(domains), _toConsumableArray(appDomains)));
 
                         case 4:
                         case 'end':
@@ -132,7 +126,7 @@ var publicDomainMiddleware = exports.publicDomainMiddleware = function publicDom
 
             case 2:
               domains = _context3.sent;
-              _req$headers$host$mat3 = req.headers.host.match(domain_regex), _req$headers$host$mat4 = (0, _slicedToArray3.default)(_req$headers$host$mat3, 2), hostname = _req$headers$host$mat4[1];
+              _req$headers$host$mat3 = req.headers.host.match(domain_regex), _req$headers$host$mat4 = _slicedToArray(_req$headers$host$mat3, 2), hostname = _req$headers$host$mat4[1];
 
               if (_lodash2.default.includes(domains, hostname)) {
                 _context3.next = 6;
@@ -158,3 +152,24 @@ var publicDomainMiddleware = exports.publicDomainMiddleware = function publicDom
     };
   }();
 };
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(files, 'files', 'unknown');
+  reactHotLoader.register(ifaces, 'ifaces', 'unknown');
+  reactHotLoader.register(ips, 'ips', 'unknown');
+  reactHotLoader.register(domain_regex, 'domain_regex', 'unknown');
+  reactHotLoader.register(adminDomainMiddleware, 'adminDomainMiddleware', 'unknown');
+  reactHotLoader.register(publicDomainMiddleware, 'publicDomainMiddleware', 'unknown');
+  leaveModule(module);
+})();
+
+;

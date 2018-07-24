@@ -5,23 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.load = exports.dump = exports.version = undefined;
 
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _bluebird = require('bluebird');
-
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 require('../../lib/environment');
 
@@ -53,10 +37,20 @@ var _fs2 = _interopRequireDefault(_fs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var version = exports.version = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(flags, args) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(flags, args) {
     var migration;
-    return _regenerator2.default.wrap(function _callee$(_context) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -83,9 +77,9 @@ var version = exports.version = function () {
 }();
 
 var dump = exports.dump = function () {
-  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(flags, args) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(flags, args) {
     var constraints, foreign_keys, tables, template, platform, data;
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -128,8 +122,8 @@ var dump = exports.dump = function () {
 }();
 
 var load = exports.load = function () {
-  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(flags, args) {
-    return _regenerator2.default.wrap(function _callee4$(_context4) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(flags, args) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -138,9 +132,9 @@ var load = exports.load = function () {
 
             _context4.next = 3;
             return _knex2.default.transaction(function () {
-              var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(trx) {
+              var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(trx) {
                 var schema;
-                return _regenerator2.default.wrap(function _callee3$(_context3) {
+                return regeneratorRuntime.wrap(function _callee3$(_context3) {
                   while (1) {
                     switch (_context3.prev = _context3.next) {
                       case 0:
@@ -175,9 +169,9 @@ var load = exports.load = function () {
 }();
 
 var _getTables = function () {
-  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(constraints) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(constraints) {
     var tables;
-    return _regenerator2.default.wrap(function _callee6$(_context6) {
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
@@ -187,10 +181,10 @@ var _getTables = function () {
           case 2:
             tables = _context6.sent;
             _context6.next = 5;
-            return (0, _bluebird.mapSeries)(tables.rows, function () {
-              var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(table) {
+            return Promise.mapSeries(tables.rows, function () {
+              var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(table) {
                 var fields;
-                return _regenerator2.default.wrap(function _callee5$(_context5) {
+                return regeneratorRuntime.wrap(function _callee5$(_context5) {
                   while (1) {
                     switch (_context5.prev = _context5.next) {
                       case 0:
@@ -241,9 +235,9 @@ var _getTables = function () {
 }();
 
 var _getConstraints = function () {
-  var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7() {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
     var constraints;
-    return _regenerator2.default.wrap(function _callee7$(_context7) {
+    return regeneratorRuntime.wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
@@ -253,13 +247,13 @@ var _getConstraints = function () {
           case 2:
             constraints = _context7.sent;
             return _context7.abrupt('return', constraints.rows.reduce(function (constraints, constraint) {
-              return (0, _extends3.default)({}, constraints, {
-                primary: constraint.constraint_type === 'PRIMARY KEY' ? [].concat((0, _toConsumableArray3.default)(constraints.primary), [{
+              return _extends({}, constraints, {
+                primary: constraint.constraint_type === 'PRIMARY KEY' ? [].concat(_toConsumableArray(constraints.primary), [{
                   name: constraint.constraint_name,
                   table: constraint.table_name,
                   column: constraint.column_name
                 }]) : constraints.primary,
-                foreign: constraint.constraint_type === 'FOREIGN KEY' ? [].concat((0, _toConsumableArray3.default)(constraints.foreign), [{
+                foreign: constraint.constraint_type === 'FOREIGN KEY' ? [].concat(_toConsumableArray(constraints.foreign), [{
                   name: constraint.constraint_name,
                   table: constraint.table_name,
                   column: constraint.column_name,
@@ -301,3 +295,26 @@ var _getNullable = function _getNullable(field) {
 var _getDefault = function _getDefault(field) {
   return field.column_default && field.column_default.substr(0, 7) !== 'nextval' ? '.defaultsTo(\'' + field.column_default + '\')' : '';
 };
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(version, 'version', 'unknown');
+  reactHotLoader.register(dump, 'dump', 'unknown');
+  reactHotLoader.register(load, 'load', 'unknown');
+  reactHotLoader.register(_getTables, '_getTables', 'unknown');
+  reactHotLoader.register(_getConstraints, '_getConstraints', 'unknown');
+  reactHotLoader.register(_getFieldType, '_getFieldType', 'unknown');
+  reactHotLoader.register(_getNullable, '_getNullable', 'unknown');
+  reactHotLoader.register(_getDefault, '_getDefault', 'unknown');
+  leaveModule(module);
+})();
+
+;

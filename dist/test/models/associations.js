@@ -5,22 +5,20 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.test_has_one = exports.test_belongs_to = exports.test_belongs_to_many = exports.test_has_many = exports.test_virtual = undefined;
 
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
 var _chai = require('chai');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var test_virtual = exports.test_virtual = function test_virtual(model, key, conditions, value) {
-  return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+  return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
     var object;
-    return _regenerator2.default.wrap(function _callee$(_context) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -43,9 +41,9 @@ var test_virtual = exports.test_virtual = function test_virtual(model, key, cond
 };
 
 var test_has_many = exports.test_has_many = function test_has_many(model, relation) {
-  return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+  return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
     var object;
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -68,9 +66,9 @@ var test_has_many = exports.test_has_many = function test_has_many(model, relati
 };
 
 var test_belongs_to_many = exports.test_belongs_to_many = function test_belongs_to_many(model, relation) {
-  return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+  return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
     var object;
-    return _regenerator2.default.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -93,9 +91,9 @@ var test_belongs_to_many = exports.test_belongs_to_many = function test_belongs_
 };
 
 var test_belongs_to = exports.test_belongs_to = function test_belongs_to(model, relation) {
-  return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+  return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
     var object;
-    return _regenerator2.default.wrap(function _callee4$(_context4) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -118,9 +116,9 @@ var test_belongs_to = exports.test_belongs_to = function test_belongs_to(model, 
 };
 
 var test_has_one = exports.test_has_one = function test_has_one(model, relation, conditions) {
-  return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+  return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
     var object;
-    return _regenerator2.default.wrap(function _callee5$(_context5) {
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
@@ -141,3 +139,23 @@ var test_has_one = exports.test_has_one = function test_has_one(model, relation,
     }, _callee5, undefined);
   }));
 };
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(test_virtual, 'test_virtual', 'unknown');
+  reactHotLoader.register(test_has_many, 'test_has_many', 'unknown');
+  reactHotLoader.register(test_belongs_to_many, 'test_belongs_to_many', 'unknown');
+  reactHotLoader.register(test_belongs_to, 'test_belongs_to', 'unknown');
+  reactHotLoader.register(test_has_one, 'test_has_one', 'unknown');
+  leaveModule(module);
+})();
+
+;

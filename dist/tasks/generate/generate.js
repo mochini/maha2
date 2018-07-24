@@ -5,16 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.destroy = exports.generate = undefined;
 
-var _bluebird = require('bluebird');
-
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
 var _console = require('../../utils/console');
 
 var _exec = require('../../utils/exec');
@@ -51,14 +41,22 @@ var _fs2 = _interopRequireDefault(_fs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var generatorsPath = _path2.default.join(__dirname, '..', '..', 'generators');
 
 var generators = _fs2.default.readdirSync(generatorsPath);
 
 var generate = exports.generate = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(flags, args) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(flags, args) {
     var template, app, name, config, data, generatorPath, generator;
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -79,9 +77,9 @@ var generate = exports.generate = function () {
             generatorPath = _path2.default.join(generatorsPath, template);
             generator = require(generatorPath).default;
             _context2.next = 11;
-            return (0, _bluebird.mapSeries)(generator.files, function () {
-              var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(file) {
-                return _regenerator2.default.wrap(function _callee$(_context) {
+            return Promise.mapSeries(generator.files, function () {
+              var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(file) {
+                return regeneratorRuntime.wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
@@ -124,12 +122,12 @@ var generate = exports.generate = function () {
 }();
 
 var destroy = exports.destroy = function () {
-  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
     var template,
         app,
         name,
         _args3 = arguments;
-    return _regenerator2.default.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -154,8 +152,8 @@ var destroy = exports.destroy = function () {
 }();
 
 var generateFile = function () {
-  var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(file, templatesPath, data) {
-    return _regenerator2.default.wrap(function _callee4$(_context4) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(file, templatesPath, data) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -212,9 +210,9 @@ var makeDirectory = function makeDirectory(filepath, data) {
 };
 
 var copyItem = function () {
-  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(file, templatesPath, data) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(file, templatesPath, data) {
     var srcPath, destPath;
-    return _regenerator2.default.wrap(function _callee5$(_context5) {
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
@@ -225,7 +223,7 @@ var copyItem = function () {
             (0, _console.action)('copy', destPath);
 
             _context5.next = 5;
-            return (0, _bluebird.promisify)(_ncp2.default)(_path2.default.resolve(srcPath), _path2.default.resolve(destPath));
+            return Promise.promisify(_ncp2.default)(_path2.default.resolve(srcPath), _path2.default.resolve(destPath));
 
           case 5:
           case 'end':
@@ -301,15 +299,15 @@ var getRendered = function getRendered(file, templatesPath, data) {
 };
 
 var runHooks = function () {
-  var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7(hooks, data) {
-    return _regenerator2.default.wrap(function _callee7$(_context7) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(hooks, data) {
+    return regeneratorRuntime.wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
             _context7.next = 2;
-            return (0, _bluebird.mapSeries)(hooks, function () {
-              var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(hook) {
-                return _regenerator2.default.wrap(function _callee6$(_context6) {
+            return Promise.mapSeries(hooks, function () {
+              var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(hook) {
+                return regeneratorRuntime.wrap(function _callee6$(_context6) {
                   while (1) {
                     switch (_context6.prev = _context6.next) {
                       case 0:
@@ -348,4 +346,33 @@ var runHooks = function () {
   };
 }();
 
-exports.default = generate;
+var _default = generate;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(generatorsPath, 'generatorsPath', 'unknown');
+  reactHotLoader.register(generators, 'generators', 'unknown');
+  reactHotLoader.register(generate, 'generate', 'unknown');
+  reactHotLoader.register(destroy, 'destroy', 'unknown');
+  reactHotLoader.register(generateFile, 'generateFile', 'unknown');
+  reactHotLoader.register(makeDirectory, 'makeDirectory', 'unknown');
+  reactHotLoader.register(copyItem, 'copyItem', 'unknown');
+  reactHotLoader.register(createFile, 'createFile', 'unknown');
+  reactHotLoader.register(getConfig, 'getConfig', 'unknown');
+  reactHotLoader.register(getData, 'getData', 'unknown');
+  reactHotLoader.register(getRendered, 'getRendered', 'unknown');
+  reactHotLoader.register(runHooks, 'runHooks', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

@@ -14,6 +14,12 @@ var _import3 = _interopRequireDefault(_import2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var ImportItem = new _model2.default({
 
   tableName: 'maha_import_items',
@@ -35,4 +41,22 @@ var ImportItem = new _model2.default({
   }
 });
 
-exports.default = ImportItem;
+var _default = ImportItem;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(ImportItem, 'ImportItem', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

@@ -5,20 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.publicMiddleware = exports.adminMiddleware = undefined;
 
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
-var _bluebird = require('bluebird');
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
 var _collect_objects = require('../../../utils/collect_objects');
 
 var _collect_objects2 = _interopRequireDefault(_collect_objects);
@@ -31,23 +17,33 @@ var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 // this gets run when the platform first boots
 // it searches through the apps for server.js files
 // and combines all segments into a public router
 
 var _apiSegment = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(pathPrefix, portal, auth) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(pathPrefix, portal, auth) {
     var apiFiles;
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             apiFiles = (0, _collect_objects2.default)(portal + '/api');
             _context2.next = 3;
-            return (0, _bluebird.reduce)(apiFiles, function () {
-              var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(segments, apiFile) {
+            return Promise.reduce(apiFiles, function () {
+              var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(segments, apiFile) {
                 var router;
-                return _regenerator2.default.wrap(function _callee$(_context) {
+                return regeneratorRuntime.wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
@@ -59,7 +55,7 @@ var _apiSegment = function () {
 
                       case 2:
                         router = _context.sent;
-                        return _context.abrupt('return', [].concat((0, _toConsumableArray3.default)(segments), [router]));
+                        return _context.abrupt('return', [].concat(_toConsumableArray(segments), [router]));
 
                       case 4:
                       case 'end':
@@ -101,9 +97,9 @@ var _serverSegment = function _serverSegment(portal) {
 };
 
 var adminMiddleware = exports.adminMiddleware = function () {
-  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
     var api, server, router;
-    return _regenerator2.default.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -136,9 +132,9 @@ var adminMiddleware = exports.adminMiddleware = function () {
 }();
 
 var publicMiddleware = exports.publicMiddleware = function () {
-  var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
     var api, server, router;
-    return _regenerator2.default.wrap(function _callee4$(_context4) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -169,3 +165,22 @@ var publicMiddleware = exports.publicMiddleware = function () {
     return _ref4.apply(this, arguments);
   };
 }();
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_apiSegment, '_apiSegment', 'unknown');
+  reactHotLoader.register(_serverSegment, '_serverSegment', 'unknown');
+  reactHotLoader.register(adminMiddleware, 'adminMiddleware', 'unknown');
+  reactHotLoader.register(publicMiddleware, 'publicMiddleware', 'unknown');
+  leaveModule(module);
+})();
+
+;

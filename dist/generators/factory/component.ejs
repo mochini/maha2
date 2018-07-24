@@ -1,0 +1,25 @@
+<% className = _.upperFirst(_.camelCase(name)) -%>
+import React from 'react'
+import PropTypes from 'prop-types'
+
+class <%= className %> extends React.Component {
+
+  static contextTypes = {}
+
+  static propTypes = {}
+
+  static defaultProps = {}
+
+  render() {}
+
+  componentDidMount() {}
+
+  componentDidUpdate(prevProps, prevState) {}
+
+  componentDidCatch(error, info) {}
+
+  componentWillUnmount() {}
+
+}
+
+export default <%= className %>

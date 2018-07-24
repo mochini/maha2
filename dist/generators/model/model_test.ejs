@@ -1,0 +1,21 @@
+<% singular = _.snakeCase(pluralize.singular(name)) -%>
+<% singularCapitalized = _.upperFirst(_.camelCase(pluralize.singular(name))) -%>
+import { test_required, test_uniqueness, test_belongs_to, test_has_one, test_has_many } from 'maha/dist/test'
+import { expect } from 'chai'
+import <%= singularCapitalized %> from '../../models/<%= singular%>'
+
+describe('<%= singular %> model', () => {
+
+  describe('rules', () => {
+
+  })
+
+  describe('virtuals', () => {
+
+  })
+
+  describe('associations', () => {
+
+  })
+
+})

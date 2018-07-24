@@ -14,6 +14,12 @@ var _model_activities2 = _interopRequireDefault(_model_activities);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
 var notificationSerializer = (0, _serializer2.default)(function (req, trx, result) {
 
   var user = userData(result.related('user'));
@@ -162,4 +168,28 @@ var objectText = function objectText(subject, object, user) {
   return object.text;
 };
 
-exports.default = notificationSerializer;
+var _default = notificationSerializer;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(notificationSerializer, 'notificationSerializer', 'unknown');
+  reactHotLoader.register(app, 'app', 'unknown');
+  reactHotLoader.register(userData, 'userData', 'unknown');
+  reactHotLoader.register(objectData, 'objectData', 'unknown');
+  reactHotLoader.register(subjectText, 'subjectText', 'unknown');
+  reactHotLoader.register(articleText, 'articleText', 'unknown');
+  reactHotLoader.register(objectText, 'objectText', 'unknown');
+  reactHotLoader.register(_default, 'default', 'unknown');
+  leaveModule(module);
+})();
+
+;

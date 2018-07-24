@@ -5,25 +5,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.test_datestring = exports.test_currency = exports.test_uniqueness = exports.test_required = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
 var _chai = require('chai');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var test_required = exports.test_required = function test_required(model, field) {
-  return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
-    return _regenerator2.default.wrap(function _callee$(_context) {
+  return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -52,9 +48,9 @@ var test_required = exports.test_required = function test_required(model, field)
 };
 
 var test_uniqueness = exports.test_uniqueness = function test_uniqueness(model, field) {
-  return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+  return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
     var original;
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -65,7 +61,7 @@ var test_uniqueness = exports.test_uniqueness = function test_uniqueness(model, 
             original = _context2.sent;
             _context2.prev = 3;
             _context2.next = 6;
-            return model.forge((0, _defineProperty3.default)({}, field, original.get(field))).save();
+            return model.forge(_defineProperty({}, field, original.get(field))).save();
 
           case 6:
             _context2.next = 11;
@@ -88,14 +84,14 @@ var test_uniqueness = exports.test_uniqueness = function test_uniqueness(model, 
 };
 
 var test_currency = exports.test_currency = function test_currency(model, field) {
-  return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
-    return _regenerator2.default.wrap(function _callee3$(_context3) {
+  return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return model.forge((0, _defineProperty3.default)({}, field, 'not a currency')).save();
+            return model.forge(_defineProperty({}, field, 'not a currency')).save();
 
           case 3:
             _context3.next = 8;
@@ -118,14 +114,14 @@ var test_currency = exports.test_currency = function test_currency(model, field)
 };
 
 var test_datestring = exports.test_datestring = function test_datestring(model, field) {
-  return (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
-    return _regenerator2.default.wrap(function _callee4$(_context4) {
+  return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return model.forge((0, _defineProperty3.default)({}, field, 'not a datestring')).save();
+            return model.forge(_defineProperty({}, field, 'not a datestring')).save();
 
           case 3:
             _context4.next = 8;
@@ -146,3 +142,22 @@ var test_datestring = exports.test_datestring = function test_datestring(model, 
     }, _callee4, undefined, [[0, 5]]);
   }));
 };
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(test_required, 'test_required', 'unknown');
+  reactHotLoader.register(test_uniqueness, 'test_uniqueness', 'unknown');
+  reactHotLoader.register(test_currency, 'test_currency', 'unknown');
+  reactHotLoader.register(test_datestring, 'test_datestring', 'unknown');
+  leaveModule(module);
+})();
+
+;

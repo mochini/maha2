@@ -5,25 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.run = exports.help = undefined;
 
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _extends3 = require('babel-runtime/helpers/extends');
-
-var _extends4 = _interopRequireDefault(_extends3);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _console = require('../utils/console');
 
@@ -41,6 +23,18 @@ var _fs2 = _interopRequireDefault(_fs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(function () {
+  var enterModule = require('react-hot-loader').enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var help = exports.help = function help(command) {
 
   (0, _console.write)('\n');
@@ -53,9 +47,9 @@ var help = exports.help = function help(command) {
 };
 
 var run = exports.run = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(parsed) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(parsed) {
     var task, args;
-    return _regenerator2.default.wrap(function _callee$(_context) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -70,7 +64,7 @@ var run = exports.run = function () {
 
           case 3:
             args = task.args.reduce(function (args, arg, index) {
-              return (0, _extends4.default)({}, args, (0, _defineProperty3.default)({}, arg.name, parsed.args[index] || null));
+              return _extends({}, args, _defineProperty({}, arg.name, parsed.args[index] || null));
             }, {});
             _context.prev = 4;
             _context.next = 7;
@@ -110,7 +104,7 @@ var getTasks = function getTasks() {
 
     var namespaced = require(_path2.default.join(taskRoot, taskFile)).default;
 
-    return [].concat((0, _toConsumableArray3.default)(tasks), (0, _toConsumableArray3.default)(_lodash2.default.castArray(namespaced)));
+    return [].concat(_toConsumableArray(tasks), _toConsumableArray(_lodash2.default.castArray(namespaced)));
   }, []);
 };
 
@@ -130,9 +124,9 @@ var getTask = function getTask(command) {
 };
 
 var helpAll = function () {
-  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
     var tasks;
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -163,9 +157,9 @@ var helpAll = function () {
 }();
 
 var helpCommand = function () {
-  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(command) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(command) {
     var task, grammar;
-    return _regenerator2.default.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -220,3 +214,24 @@ var helpCommand = function () {
     return _ref3.apply(this, arguments);
   };
 }();
+;
+
+(function () {
+  var reactHotLoader = require('react-hot-loader').default;
+
+  var leaveModule = require('react-hot-loader').leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(help, 'help', 'unknown');
+  reactHotLoader.register(run, 'run', 'unknown');
+  reactHotLoader.register(getTasks, 'getTasks', 'unknown');
+  reactHotLoader.register(getTask, 'getTask', 'unknown');
+  reactHotLoader.register(helpAll, 'helpAll', 'unknown');
+  reactHotLoader.register(helpCommand, 'helpCommand', 'unknown');
+  leaveModule(module);
+})();
+
+;
