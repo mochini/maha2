@@ -14,7 +14,7 @@ var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-var _listening = require('../../../../models/listening');
+var _listening = require('../../../models/listening');
 
 var _listening2 = _interopRequireDefault(_listening);
 

@@ -1,4 +1,4 @@
-import Listening from '../../../../models/listening'
+import Listening from '../../../models/listening'
 import { plugin } from 'backframe'
 import _ from 'lodash'
 

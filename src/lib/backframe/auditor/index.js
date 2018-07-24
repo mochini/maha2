@@ -1,6 +1,6 @@
 import { plugin } from 'backframe'
-import Story from '../../../../models/story'
-import Audit from '../../../../models/audit'
+import Story from '../../../models/story'
+import Audit from '../../../models/audit'
 import _ from 'lodash'
 
 const afterProcessor = async (req, trx, result, options) => {

@@ -14,7 +14,7 @@ var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 var _backframe = require('backframe');
 
-var _app = require('../../../../models/app');
+var _app = require('../../../models/app');
 
 var _app2 = _interopRequireDefault(_app);
 

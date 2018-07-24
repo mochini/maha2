@@ -12,11 +12,11 @@ var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-var _activity = require('../../../../models/activity');
+var _activity = require('../../../models/activity');
 
 var _activity2 = _interopRequireDefault(_activity);
 
-var _story = require('../../../../models/story');
+var _story = require('../../../models/story');
 
 var _story2 = _interopRequireDefault(_story);
 

@@ -1,5 +1,5 @@
 import { plugin } from 'backframe'
-import App from '../../../../models/app'
+import App from '../../../models/app'
 
 const alterRequest = async (req, trx, options) => {
 

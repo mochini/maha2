@@ -1,5 +1,5 @@
-import Activity from '../../../../models/activity'
-import Story from '../../../../models/story'
+import Activity from '../../../models/activity'
+import Story from '../../../models/story'
 import socket from '../../emitter'
 import { plugin } from 'backframe'
 

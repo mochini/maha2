@@ -16,11 +16,11 @@ var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 var _backframe = require('backframe');
 
-var _story = require('../../../../models/story');
+var _story = require('../../../models/story');
 
 var _story2 = _interopRequireDefault(_story);
 
-var _audit = require('../../../../models/audit');
+var _audit = require('../../../models/audit');
 
 var _audit2 = _interopRequireDefault(_audit);
 

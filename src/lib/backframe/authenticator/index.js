@@ -1,6 +1,6 @@
 import { plugin, BackframeError } from 'backframe'
-import Device from '../../../../models/device'
-import passport from '../../passport'
+import Device from '../../../models/device'
+import passport from '../../express/passport'
 import Rollbar from '../../rollbar'
 import moment from 'moment'
 

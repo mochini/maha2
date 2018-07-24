@@ -18,11 +18,11 @@ var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 var _backframe = require('backframe');
 
-var _device = require('../../../../models/device');
+var _device = require('../../../models/device');
 
 var _device2 = _interopRequireDefault(_device);
 
-var _passport = require('../../passport');
+var _passport = require('../../express/passport');
 
 var _passport2 = _interopRequireDefault(_passport);
 

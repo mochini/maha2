@@ -26,19 +26,19 @@ var _notification_queue = require('../../../../queues/notification_queue');
 
 var _notification_queue2 = _interopRequireDefault(_notification_queue);
 
-var _notification_type = require('../../../../models/notification_type');
+var _notification_type = require('../../../models/notification_type');
 
 var _notification_type2 = _interopRequireDefault(_notification_type);
 
-var _notification = require('../../../../models/notification');
+var _notification = require('../../../models/notification');
 
 var _notification2 = _interopRequireDefault(_notification);
 
-var _story = require('../../../../models/story');
+var _story = require('../../../models/story');
 
 var _story2 = _interopRequireDefault(_story);
 
-var _app = require('../../../../models/app');
+var _app = require('../../../models/app');
 
 var _app2 = _interopRequireDefault(_app);
 
